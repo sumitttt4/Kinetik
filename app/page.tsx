@@ -9,8 +9,8 @@ import { InfiniteScrollColumn } from './components/infinite-scroll-column';
 import { MagnetButton } from './components/magnet-button';
 import { MorphingDialog } from './components/morphing-dialog';
 import { CodePanel } from './components/code-panel';
-import { ModeToggle } from '@/components/mode-toggle';
 import { FloatingDock } from './components/floating-dock';
+import { Navbar } from './components/navbar';
 import { registry, type RegistryItem } from '@/lib/registry';
 
 const cards = [
@@ -51,27 +51,10 @@ const trustItems = ['Next.js 14 App Router', 'Framer Motion 11+', 'Tailwind + cn
 export default function Home() {
   const [selected, setSelected] = useState<RegistryItem | null>(null);
 
-  const Navbar = () => (
-    <nav className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-6">
-      <div className="flex items-center gap-2 text-lg font-semibold tracking-tight">
-        <div className="grid h-6 w-6 place-items-center rounded-full bg-primary/15">
-          <div className="h-2.5 w-2.5 rounded-full bg-primary" />
-        </div>
-        Kinetik
-      </div>
-      <div className="flex items-center gap-3">
-        <Link href="/registry" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
-          Registry
-        </Link>
-        <ModeToggle />
-      </div>
-    </nav>
-  );
-
   return (
     <main className="min-h-screen bg-background pb-20 text-foreground transition-colors duration-300">
       <Navbar />
-      <section className="kinetik-hero-surface border-b border-border/60 pt-16">
+      <section className="kinetik-hero-surface border-b border-border/60 pt-24">
         <div className="mx-auto grid max-w-6xl gap-10 px-6 pb-16 md:grid-cols-2 md:pb-20 md:pt-8">
           <div className="flex flex-col justify-center">
             <div className="inline-flex w-fit items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-primary">
