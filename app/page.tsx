@@ -11,6 +11,7 @@ import { MorphingDialog } from './components/morphing-dialog';
 import { CodePanel } from './components/code-panel';
 import { FloatingDock } from './components/floating-dock';
 import { Navbar } from './components/navbar';
+import { NewsletterCard } from './components/newsletter-card';
 import { registry, type RegistryItem } from '@/lib/registry';
 
 const cards = [
@@ -43,6 +44,12 @@ const cards = [
     copy: 'Dual opposing marquees with smooth transform loops.',
     span: 'md:col-span-2',
     component: <InfiniteScrollColumn />
+  },
+  {
+    title: 'Neumorphic Newsletter',
+    copy: 'Soft-UI subscription card with recessed inputs and spring interactions.',
+    span: 'md:col-span-3',
+    component: <NewsletterCard />
   }
 ];
 
