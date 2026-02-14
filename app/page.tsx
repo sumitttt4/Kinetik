@@ -10,6 +10,7 @@ import { MagnetButton } from './components/magnet-button';
 import { MorphingDialog } from './components/morphing-dialog';
 import { CodePanel } from './components/code-panel';
 import { ModeToggle } from '@/components/mode-toggle';
+import { FloatingDock } from './components/floating-dock';
 import { registry, type RegistryItem } from '@/lib/registry';
 
 const cards = [
@@ -161,6 +162,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <FloatingDock />
 
       <CodePanel item={selected} open={Boolean(selected)} onClose={() => setSelected(null)} />
     </main>
