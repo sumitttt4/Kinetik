@@ -38,7 +38,7 @@
 
   .dark {
     /* DARK MODE ("The Void" - Your Glyph Colors) */
-    --background: 224 71% 4%;    /* #050a18 (Deep Navy) */
+    --background: 226 66% 8%;    /* #070d22 (Deep Navy) */
     --foreground: 210 40% 98%;   /* #f8fafc */
 
     --card: 222 47% 11%;         /* #0f172a */
@@ -79,6 +79,14 @@
   }
   body {
     @apply bg-background text-foreground leading-relaxed transition-colors duration-300;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    letter-spacing: -0.02em;
   }
 }
 

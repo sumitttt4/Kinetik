@@ -30,7 +30,8 @@ export function Navbar() {
         <div className="flex items-center gap-2">
           <button
             type="button"
-            className="hidden h-9 items-center gap-2 rounded-lg border border-border bg-background/75 px-3 text-sm text-muted-foreground shadow-[inset_0_1px_0_0_rgba(255,255,255,0.8)] transition-colors hover:text-foreground md:inline-flex"
+            aria-label="Search documentation"
+            className="hidden h-9 items-center gap-2 rounded-lg border border-border bg-background/75 px-3 text-sm text-muted-foreground shadow-[inset_0_1px_0_0_rgba(255,255,255,0.8)] transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring md:inline-flex"
           >
             <Search className="h-4 w-4" />
             <span>Search docs...</span>
@@ -41,7 +42,8 @@ export function Navbar() {
             href="https://github.com/sumitttt4/Kinetik"
             target="_blank"
             rel="noreferrer"
-            className="hidden h-9 items-center rounded-lg border border-border bg-background/80 text-sm md:inline-flex"
+            aria-label="Star Kinetik on GitHub"
+            className="hidden h-9 items-center rounded-lg border border-border bg-background/80 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring md:inline-flex"
           >
             <span className="inline-flex items-center gap-1.5 px-2.5 text-foreground transition-colors hover:text-primary">
               <Github className="h-4 w-4" />
@@ -54,7 +56,7 @@ export function Navbar() {
           <button
             type="button"
             aria-label="Sponsor"
-            className="grid h-9 w-9 place-items-center rounded-lg border border-border bg-background/75 text-muted-foreground transition-colors hover:text-pink-500"
+            className="grid h-9 w-9 place-items-center rounded-lg border border-border bg-background/75 text-muted-foreground transition-colors hover:text-pink-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             <Heart className="h-4 w-4" />
           </button>

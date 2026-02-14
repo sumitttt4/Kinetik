@@ -4,14 +4,10 @@ import Link from 'next/link';
 import { AnimatePresence, MotionValue, motion, useAnimationControls, useMotionTemplate, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { Bell, Compass, FolderKanban, House, Layers2, type LucideIcon } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
+import { kinetikSpring } from '@/lib/motion';
 import { cn } from '@/lib/utils';
 
-const spring = {
-  type: 'spring',
-  stiffness: 400,
-  damping: 30,
-  mass: 1
-} as const;
+const spring = kinetikSpring;
 
 const BASE_ICON_SIZE = 42;
 const MAX_ICON_BOOST = 32;
@@ -125,7 +121,7 @@ function DockIcon({ item, mouseX }: { item: DockItem; mouseX: MotionValue<number
             'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30'
           )}
         >
-          <motion.div whileHover={{ y: -2.5 }} whileTap={{ scale: 0.98 }} transition={spring} className="grid place-items-center">
+          <motion.div whileHover={{ y: -2, scale: 1.02 }} whileTap={{ scale: 0.98 }} transition={spring} className="grid place-items-center">
             <item.icon className="h-5 w-5 text-white/90" strokeWidth={2} />
           </motion.div>
         </Link>
