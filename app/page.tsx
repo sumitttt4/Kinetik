@@ -8,11 +8,8 @@ import { FluidTabs } from './components/fluid-tabs';
 import { InfiniteScrollColumn } from './components/infinite-scroll-column';
 import { MagnetButton } from './components/magnet-button';
 import { MorphingDialog } from './components/morphing-dialog';
-import { CodePanel } from './components/code-panel';
-import { FloatingDock } from './components/floating-dock';
 import { Navbar } from './components/navbar';
 import { NewsletterCard } from './components/newsletter-card';
-import { FloatingToolbar } from './components/floating-toolbar';
 import { registry, type RegistryItem } from '@/lib/registry';
 
 const cards = [
