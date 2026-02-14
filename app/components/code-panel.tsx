@@ -4,23 +4,14 @@ import { useState } from 'react';
 import { Check, Clipboard, X } from 'lucide-react';
 import type { RegistryItem } from '@/lib/registry';
 
-type CodePanelProps = {
-  item: RegistryItem | null;
-  open: boolean;
-  onClose: () => void;
-};
 
-export function CodePanel({ item, open, onClose }: CodePanelProps) {
   const [copied, setCopied] = useState(false);
 
   if (!open || !item) {
     return null;
   }
 
-  const panelItem = item;
 
-  async function copyCode() {
-    await navigator.clipboard.writeText(panelItem.code);
     setCopied(true);
     setTimeout(() => setCopied(false), 1200);
   }
@@ -30,8 +21,7 @@ export function CodePanel({ item, open, onClose }: CodePanelProps) {
       <div className="w-full max-w-3xl rounded-2xl border border-sky-200/40 bg-white p-5" onClick={(event) => event.stopPropagation()}>
         <div className="flex items-start justify-between gap-4">
           <div>
-            <h3 className="text-lg font-semibold text-slate-900">{panelItem.name}</h3>
-            <p className="text-sm text-slate-600">{panelItem.description}</p>
+
           </div>
           <button type="button" className="rounded-full border border-slate-200 p-2" onClick={onClose} aria-label="Close code panel">
             <X className="h-4 w-4" />
@@ -40,13 +30,7 @@ export function CodePanel({ item, open, onClose }: CodePanelProps) {
 
         <div className="mt-4 space-y-2 rounded-xl border border-slate-200 bg-slate-50 p-3 text-xs text-slate-700">
           <p className="font-semibold">Install</p>
-          <code>pnpm add {panelItem.dependencies.join(' ') || 'no extra dependencies required'}</code>
-          <p className="pt-2 font-semibold">Usage</p>
-          <code>{panelItem.usage}</code>
-        </div>
 
-        <div className="mt-4 overflow-x-auto rounded-xl border border-slate-200 bg-slate-950 p-4 text-xs text-sky-100">
-          <pre>{panelItem.code}</pre>
         </div>
 
         <button
