@@ -13,9 +13,9 @@ const spring = {
   mass: 1
 } as const;
 
-const BASE_ICON_SIZE = 44;
-const MAX_ICON_BOOST = 26;
-const SIGMA = 72;
+const BASE_ICON_SIZE = 42;
+const MAX_ICON_BOOST = 32;
+const SIGMA = 88;
 
 type DockItem = {
   id: string;
@@ -77,7 +77,8 @@ function DockIcon({ item, mouseX }: { item: DockItem; mouseX: MotionValue<number
   });
 
   const width = useSpring(dynamicSize, spring);
-  const scale = useTransform(width, [BASE_ICON_SIZE, BASE_ICON_SIZE + MAX_ICON_BOOST], [1, 1.28]);
+  const scale = useTransform(width, [BASE_ICON_SIZE, BASE_ICON_SIZE + MAX_ICON_BOOST], [1, 1.36]);
+  const yOffset = useTransform(width, [BASE_ICON_SIZE, BASE_ICON_SIZE + MAX_ICON_BOOST], [0, -8]);
   const glow = useTransform(width, [BASE_ICON_SIZE, BASE_ICON_SIZE + MAX_ICON_BOOST], [0.14, 0.42]);
   const boxShadow = useMotionTemplate`inset 0 1px 0 0 rgba(255,255,255,0.14), 0 12px 30px -18px rgba(2,6,23,0.9), 0 0 0 1px rgba(255,255,255,${glow})`;
 
@@ -101,7 +102,7 @@ function DockIcon({ item, mouseX }: { item: DockItem; mouseX: MotionValue<number
         layout
         transition={spring}
         animate={bounceControls}
-        style={{ width, height: width, scale, boxShadow }}
+        style={{ width, height: width, scale, y: yOffset, boxShadow }}
         className={cn(
           'relative rounded-2xl border border-white/10',
           'bg-[#070d22]/80 backdrop-blur-xl',
@@ -115,7 +116,7 @@ function DockIcon({ item, mouseX }: { item: DockItem; mouseX: MotionValue<number
           onMouseLeave={() => setHovered(false)}
           onClick={() =>
             bounceControls.start({
-              y: [0, -10, 0],
+              y: [0, -12, 0],
               transition: spring
             })
           }
@@ -124,7 +125,7 @@ function DockIcon({ item, mouseX }: { item: DockItem; mouseX: MotionValue<number
             'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30'
           )}
         >
-          <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }} transition={spring} className="grid place-items-center">
+          <motion.div whileHover={{ y: -2.5 }} whileTap={{ scale: 0.98 }} transition={spring} className="grid place-items-center">
             <item.icon className="h-5 w-5 text-white/90" strokeWidth={2} />
           </motion.div>
         </Link>
