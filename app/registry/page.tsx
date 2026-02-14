@@ -20,17 +20,21 @@ export default function RegistryPage() {
 
   return (
     <main className="mx-auto min-h-screen max-w-6xl px-4 py-12 md:px-8">
-      <h1 className="text-3xl font-bold text-slate-900">Component Registry</h1>
-      <p className="mt-2 text-slate-600">Searchable component catalog for copy-paste usage.</p>
+      <h1 className="text-3xl font-semibold tracking-tight text-foreground md:text-4xl">Component Registry</h1>
+      <p className="mt-2 text-sm text-muted-foreground md:text-base">Searchable component catalog for copy-paste usage.</p>
 
       <div className="mt-6 flex flex-col gap-3 md:flex-row">
         <input
           value={query}
           onChange={(event) => setQuery(event.target.value)}
           placeholder="Search component"
-          className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm"
+          className="w-full rounded-xl border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         />
-        <select value={category} onChange={(event) => setCategory(event.target.value)} className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm">
+        <select
+          value={category}
+          onChange={(event) => setCategory(event.target.value)}
+          className="rounded-xl border border-input bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        >
           <option value="all">All</option>
           <option value="hero">Hero</option>
           <option value="motion">Motion</option>
@@ -40,10 +44,10 @@ export default function RegistryPage() {
 
       <div className="mt-8 grid gap-4 md:grid-cols-2">
         {filtered.map((item) => (
-          <Link key={item.slug} href={`/registry/${item.slug}`} className="rounded-xl border border-slate-200 bg-white p-4">
-            <p className="text-sm font-semibold text-slate-900">{item.name}</p>
-            <p className="mt-1 text-xs text-slate-600">{item.description}</p>
-            <span className="mt-3 inline-flex rounded-full border border-sky-200 bg-sky-50 px-2 py-1 text-[11px] text-sky-700">{item.category}</span>
+          <Link key={item.slug} href={`/registry/${item.slug}`} className="rounded-2xl border border-border bg-card p-5 transition-colors hover:bg-accent/40">
+            <p className="text-base font-semibold tracking-tight text-foreground">{item.name}</p>
+            <p className="mt-1 text-sm text-muted-foreground">{item.description}</p>
+            <span className="mt-3 inline-flex rounded-full border border-primary/20 bg-primary/10 px-2.5 py-1 text-[11px] font-medium uppercase tracking-wide text-primary">{item.category}</span>
           </Link>
         ))}
       </div>
