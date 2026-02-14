@@ -53,6 +53,15 @@ export const registry: RegistryItem[] = [
     dependencies: [],
     usage: "import { InfiniteScrollColumn } from '@/app/components/infinite-scroll-column';",
     code: `'use client';\n\nexport function InfiniteScrollColumn() {\n  // copy from registry component source\n}`
+  },
+  {
+    name: 'Floating Toolbar',
+    slug: 'floating-toolbar',
+    description: 'Minimalist navigation pill with precise layout transitions.',
+    category: 'motion',
+    dependencies: ['framer-motion', 'lucide-react'],
+    usage: "import { FloatingToolbar } from '@/app/components/floating-toolbar';",
+    code: `'use client';\n\nexport function FloatingToolbar() {\n  // copy from registry component source\n}`
   }
 ];
 

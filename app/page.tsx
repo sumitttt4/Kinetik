@@ -47,12 +47,6 @@ const cards = [
     component: <InfiniteScrollColumn />
   },
   {
-    title: 'Floating Toolbar',
-    copy: 'Minimalist navigation pill with precise layout transitions.',
-    span: 'md:col-span-2',
-    component: <FloatingToolbar />
-  },
-  {
     title: 'Neumorphic Newsletter',
     copy: 'Soft-UI subscription card with recessed inputs and spring interactions.',
     span: 'md:col-span-4',

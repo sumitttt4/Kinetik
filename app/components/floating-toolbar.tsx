@@ -42,17 +42,20 @@ export function FloatingToolbar() {
                   className="absolute inset-0 rounded-full bg-slate-900 dark:bg-slate-100"
                   transition={{
                     type: "spring",
-                    stiffness: 350,
+                    stiffness: 300,
                     damping: 30
                   }}
                 />
               )}
 
-              {/* Hover Background - Subtle fade */}
+              {/* Hover Background - Subtle scale */}
               {isHovered && !isActive && (
                 <motion.div
                   layoutId="toolbar-hover"
                   className="absolute inset-0 rounded-full bg-slate-100 dark:bg-slate-800"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.15 }}
                 />
               )}
