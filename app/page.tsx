@@ -12,6 +12,7 @@ import { CodePanel } from './components/code-panel';
 import { FloatingDock } from './components/floating-dock';
 import { Navbar } from './components/navbar';
 import { NewsletterCard } from './components/newsletter-card';
+import { FloatingToolbar } from './components/floating-toolbar';
 import { registry, type RegistryItem } from '@/lib/registry';
 
 const cards = [
@@ -46,9 +47,15 @@ const cards = [
     component: <InfiniteScrollColumn />
   },
   {
+    title: 'Floating Toolbar',
+    copy: 'Minimalist navigation pill with precise layout transitions.',
+    span: 'md:col-span-2',
+    component: <FloatingToolbar />
+  },
+  {
     title: 'Neumorphic Newsletter',
     copy: 'Soft-UI subscription card with recessed inputs and spring interactions.',
-    span: 'md:col-span-3',
+    span: 'md:col-span-4',
     component: <NewsletterCard />
   }
 ];
