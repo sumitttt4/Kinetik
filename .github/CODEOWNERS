@@ -1,0 +1,8 @@
+# Default owner
+* @sumitttt4
+
+# Core app and library ownership
+/app/** @sumitttt4
+/lib/** @sumitttt4
+/components/** @sumitttt4
+/.github/** @sumitttt4

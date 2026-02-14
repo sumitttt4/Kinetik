@@ -20,6 +20,7 @@
   <a href="https://github.com/sumitttt4/Kinetik/stargazers"><img src="https://img.shields.io/github/stars/sumitttt4/Kinetik?style=flat&color=3b82f6" alt="Stars" /></a>
   <a href="https://github.com/sumitttt4/Kinetik/blob/main/LICENSE"><img src="https://img.shields.io/github/license/sumitttt4/Kinetik?color=3b82f6" alt="License" /></a>
   <a href="https://github.com/sumitttt4/Kinetik/issues"><img src="https://img.shields.io/github/issues/sumitttt4/Kinetik?color=3b82f6" alt="Issues" /></a>
+  <a href="https://github.com/sumitttt4/Kinetik/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/sumitttt4/Kinetik/ci.yml?branch=main&label=CI" alt="CI" /></a>
 </p>
 
 ---
@@ -134,6 +135,7 @@ export const kinetikSpring = {
 │   ├── page.tsx          # Landing page showcase
 │   └── not-found.tsx     # Custom 404
 ├── components/           # Shared providers (theme-provider, mode-toggle)
+├── .github/              # Issue templates, CI, CODEOWNERS, funding
 ├── lib/
 │   ├── motion.ts         # Global spring physics config
 │   ├── registry.ts       # Component metadata registry
@@ -174,6 +176,17 @@ We welcome contributions! Please read our [Contributing Guide](CONTRIBUTING.md) 
 
 - [Code of Conduct](CODE_OF_CONDUCT.md)
 - [Security Policy](SECURITY.md)
+- [Support](SUPPORT.md)
+- [Governance](GOVERNANCE.md)
+
+## Open Source Health
+
+This repository includes key community and governance files expected by serious OSS programs:
+
+- `README`, `LICENSE`, `CONTRIBUTING`, `CODE_OF_CONDUCT`, `SECURITY`, `CHANGELOG`
+- Issue templates + pull request template
+- CI workflow (lint + build on push/PR)
+- CODEOWNERS + funding configuration
 
 ## Deployment
 
