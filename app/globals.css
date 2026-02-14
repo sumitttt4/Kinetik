@@ -2,55 +2,107 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  color-scheme: light;
-  --kinetik-accent: #0ea5e9;
-  --kinetik-navy: #020617;
-  --kinetik-surface: rgba(255, 255, 255, 0.82);
+@layer base {
+  :root {
+    /* LIGHT MODE ("The Laboratory") */
+    --background: 210 40% 98%;   /* slate-50 */
+    --foreground: 222 47% 11%;   /* slate-900 */
+    
+    --card: 0 0% 100%;           /* white */
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 217 91% 60%;      /* Brand Blue #3b82f6 */
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222 47% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222 47% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%; /* Slate-200 */
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    /* DARK MODE ("The Void" - Your Glyph Colors) */
+    --background: 224 71% 4%;    /* #050a18 (Deep Navy) */
+    --foreground: 210 40% 98%;   /* #f8fafc */
+
+    --card: 222 47% 11%;         /* #0f172a */
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 217 91% 60%;      /* Brand Blue #3b82f6 */
+    --primary-foreground: 222 47% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%; /* Subtle Navy Border */
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 48%;
+  }
 }
 
-body {
-  @apply bg-slate-50 text-slate-900;
-  background-image:
-    radial-gradient(circle at 20% 15%, rgba(14, 165, 233, 0.18) 0, transparent 32%),
-    radial-gradient(circle at 80% 5%, rgba(2, 6, 23, 0.08) 0, transparent 25%),
-    linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(248, 250, 252, 1) 100%);
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+  body {
+    @apply bg-background text-foreground transition-colors duration-300; 
+  }
 }
 
 
+/* Custom Kinetik Classes (Revived) */
 .kinetik-hero-surface {
-  background:
-    radial-gradient(circle at 85% 10%, rgba(14, 165, 233, 0.22) 0%, rgba(14, 165, 233, 0) 36%),
-    radial-gradient(circle at 15% 20%, rgba(2, 6, 23, 0.06) 0%, rgba(2, 6, 23, 0) 30%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.82) 100%);
+  background: radial-gradient(circle at 85% 10%, hsl(var(--primary) / 0.22) 0%, transparent 36%),
+              radial-gradient(circle at 15% 20%, hsl(var(--foreground) / 0.06) 0%, transparent 30%),
+              linear-gradient(180deg, hsl(var(--background) / 0.95) 0%, hsl(var(--background) / 0.82) 100%);
+}
+
+.bento-card {
+  @apply border border-border bg-card/60 backdrop-blur-xl;
+  box-shadow: 0 18px 50px -28px hsl(var(--foreground) / 0.15);
 }
 
 .skew-divider {
   transform: skewY(-3deg);
 }
 
-.bento-card {
-  @apply border border-sky-200/60 backdrop-blur-xl;
-  background: var(--kinetik-surface);
-  box-shadow: 0 18px 50px -28px rgba(2, 6, 23, 0.45);
-}
-
+/* Marquee Animations */
 @keyframes kinetik-marquee-up {
-  from {
-    transform: translateY(0%);
-  }
-  to {
-    transform: translateY(-50%);
-  }
+  from { transform: translateY(0%); }
+  to { transform: translateY(-50%); }
 }
 
 @keyframes kinetik-marquee-down {
-  from {
-    transform: translateY(-50%);
-  }
-  to {
-    transform: translateY(0%);
-  }
+  from { transform: translateY(-50%); }
+  to { transform: translateY(0%); }
 }
 
 .kinetik-marquee {
@@ -62,9 +114,9 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .kinetik-marquee,
-  .kinetik-marquee-reverse {
+  .kinetik-marquee, .kinetik-marquee-reverse {
     animation-duration: 0.01ms;
     animation-iteration-count: 1;
   }
 }
+
