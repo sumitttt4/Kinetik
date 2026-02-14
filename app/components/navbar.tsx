@@ -53,13 +53,15 @@ export function Navbar() {
             <span className="px-2.5 text-xs font-semibold text-muted-foreground">1.2k</span>
           </Link>
 
-          <button
-            type="button"
+          <Link
+            href="https://buymeacoffee.com/sumitsharmq"
+            target="_blank"
+            rel="noreferrer"
             aria-label="Sponsor"
             className="grid h-9 w-9 place-items-center rounded-lg border border-border bg-background/75 text-muted-foreground transition-colors hover:text-pink-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             <Heart className="h-4 w-4" />
-          </button>
+          </Link>
 
           <ModeToggle />
         </div>
