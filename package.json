@@ -1,7 +1,31 @@
 {
   "name": "kinetik",
   "version": "0.1.0",
+  "description": "Copy-paste registry of physically modeled UI components for React.",
   "private": true,
+  "license": "MIT",
+  "author": "Sumit Sharma",
+  "homepage": "https://github.com/sumitttt4/Kinetik#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sumitttt4/Kinetik.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sumitttt4/Kinetik/issues"
+  },
+  "funding": {
+    "type": "individual",
+    "url": "https://buymeacoffee.com/sumitsharmq"
+  },
+  "keywords": [
+    "nextjs",
+    "react",
+    "framer-motion",
+    "tailwindcss",
+    "ui-components",
+    "design-system",
+    "open-source"
+  ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",

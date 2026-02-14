@@ -2,12 +2,12 @@
 
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { Bell, CheckCircle2 } from 'lucide-react';
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 
 export function DynamicIsland() {
   const [open, setOpen] = useState(false);
   const shouldReduceMotion = useReducedMotion();
-  const spring = useMemo(() => (shouldReduceMotion ? { duration: 0 } : { type: 'spring', bounce: 0.25, duration: 0.5 }), [shouldReduceMotion]);
+  const transition = shouldReduceMotion ? { duration: 0 } : { type: 'spring', stiffness: 350, damping: 25 };
 
   return (
     <button
@@ -24,7 +24,7 @@ export function DynamicIsland() {
             initial={{ opacity: 0, scale: 0.9, y: 5 }}
             animate={{ opacity: 1, scale: 1, y: 0, width: 280 }}
             exit={{ opacity: 0, scale: 0.9, y: 5 }}
-            transition={{ type: 'spring', stiffness: 350, damping: 25 }}
+            transition={transition}
             className="flex w-full items-center justify-between gap-3 overflow-hidden"
           >
             <div className="flex items-center gap-3 text-left">
@@ -44,7 +44,7 @@ export function DynamicIsland() {
             initial={{ opacity: 0, scale: 0.9 }} 
             animate={{ opacity: 1, scale: 1 }} 
             exit={{ opacity: 0, scale: 0.9 }} 
-            transition={{ type: 'spring', stiffness: 350, damping: 25 }} 
+            transition={transition}
             className="flex items-center gap-2.5 text-sm font-medium tracking-tight text-white/90"
           >
             <Bell className="h-4 w-4 text-sky-400" />

@@ -3,6 +3,7 @@ import { getRegistryItem } from '@/lib/registry';
 
 export default function RegistryDetailPage({ params }: { params: { slug: string } }) {
   const item = getRegistryItem(params.slug);
+  const installLine = item?.dependencies.length ? `pnpm add ${item.dependencies.join(' ')}` : 'No extra dependencies required';
 
   if (!item) {
     notFound();
@@ -15,7 +16,7 @@ export default function RegistryDetailPage({ params }: { params: { slug: string 
 
       <div className="mt-6 rounded-2xl border border-border bg-card p-5 text-sm text-foreground">
         <p className="font-semibold tracking-tight">Install</p>
-        <code className="mt-1 block rounded-md border border-border bg-background px-3 py-2 text-xs">pnpm add {item.dependencies.join(' ') || 'no extra dependencies required'}</code>
+        <code className="mt-1 block rounded-md border border-border bg-background px-3 py-2 text-xs">{installLine}</code>
         <p className="mt-4 font-semibold tracking-tight">Usage</p>
         <code className="mt-1 block rounded-md border border-border bg-background px-3 py-2 text-xs">{item.usage}</code>
       </div>

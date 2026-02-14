@@ -8,6 +8,7 @@ import { FluidTabs } from './components/fluid-tabs';
 import { InfiniteScrollColumn } from './components/infinite-scroll-column';
 import { MagnetButton } from './components/magnet-button';
 import { MorphingDialog } from './components/morphing-dialog';
+import { CodePanel } from './components/code-panel';
 import { Navbar } from './components/navbar';
 import { NewsletterCard } from './components/newsletter-card';
 import { registry, type RegistryItem } from '@/lib/registry';
@@ -100,7 +101,7 @@ export default function Home() {
       <section id="wall-of-value" className="py-16 md:py-20">
         <div className="mx-auto mb-8 max-w-6xl px-6 md:mb-10">
           <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">The Wall of Value</h2>
-          <p className="mt-3 text-sm text-muted-foreground md:text-base">Five hero components, physically modeled and copy-paste ready.</p>
+          <p className="mt-3 text-sm text-muted-foreground md:text-base">Six premium components, physically modeled and copy-paste ready.</p>
         </div>
 
         <div className="mx-auto grid max-w-6xl gap-5 px-6 md:grid-cols-6">
@@ -150,8 +151,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      <FloatingDock />
 
       <CodePanel item={selected} open={Boolean(selected)} onClose={() => setSelected(null)} />
     </main>
