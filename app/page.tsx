@@ -114,19 +114,19 @@ export default function Home() {
           <p className="mt-3 text-sm text-muted-foreground md:text-base">Five hero components, physically modeled and copy-paste ready.</p>
         </div>
 
-        <div className="mx-auto grid max-w-6xl gap-6 px-6 md:grid-cols-6">
+        <div className="mx-auto grid max-w-6xl gap-5 px-6 md:grid-cols-6">
           {cards.map((card) => (
-            <article key={card.title} className={`bento-card relative overflow-hidden rounded-3xl p-6 ${card.span}`}>
+            <article key={card.title} className={`bento-card relative overflow-hidden rounded-3xl p-5 md:p-6 ${card.span}`}>
               <div className="relative z-10">
-                <h3 className="text-lg font-semibold tracking-tight text-foreground">{card.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{card.copy}</p>
-                <div className="mt-6 flex min-h-[160px] items-center justify-center rounded-2xl border border-border bg-muted/40 p-4">
+                <h3 className="text-base font-semibold leading-tight tracking-tight text-foreground md:text-[17px]">{card.title}</h3>
+                <p className="mt-2 text-[13px] leading-6 text-muted-foreground md:text-sm">{card.copy}</p>
+                <div className="mt-5 flex min-h-[164px] items-center justify-center rounded-2xl border border-border bg-muted/40 p-3.5 md:p-4">
                   {card.component}
                 </div>
                 <button
                   type="button"
                   onClick={() => setSelected(registry.find((item) => item.name === card.title) ?? null)}
-                  className="mt-5 inline-flex h-9 items-center justify-center rounded-full border border-border bg-background px-4 text-xs font-semibold text-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
+                  className="mt-4 inline-flex h-8.5 items-center justify-center rounded-full border border-border bg-background px-3.5 text-[11px] font-semibold uppercase tracking-[0.03em] text-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
                 >
                   View Code
                 </button>
