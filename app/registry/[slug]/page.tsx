@@ -1,22 +1,34 @@
-import Link from 'next/link';
-import { notFound } from 'next/navigation';
-import { ArrowLeft, Clipboard, Package } from 'lucide-react';
-import { getRegistryItem, registry } from '@/lib/registry';
+'use client';
 
-export function generateStaticParams() {
-  return registry.map((item) => ({ slug: item.slug }));
-}
+import Link from 'next/link';
+import { ArrowLeft, Clipboard, Package, Check } from 'lucide-react';
+import { getRegistryItem } from '@/lib/registry';
+import { previewMap } from '@/lib/preview-map';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function RegistryDetailPage({ params }: { params: { slug: string } }) {
   const item = getRegistryItem(params.slug);
+  const router = useRouter();
+  const [copied, setCopied] = useState(false);
 
   if (!item) {
-    notFound();
+    router.push('/registry');
+    return null;
   }
 
   const installLine = item.dependencies.length
     ? `pnpm add ${item.dependencies.join(' ')}`
     : 'No additional dependencies required.';
+
+  const preview = previewMap[item.slug];
+
+  async function copyCode() {
+    if (!item) return;
+    await navigator.clipboard.writeText(item.code);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1500);
+  }
 
   return (
     <main className="min-h-screen bg-background text-foreground">
@@ -44,8 +56,20 @@ export default function RegistryDetailPage({ params }: { params: { slug: string 
           </div>
         </div>
 
-        {/* Install */}
-        <div className="mt-8 space-y-4">
+        {/* Live Preview */}
+        {preview && (
+          <div className="mt-8 rounded-2xl border border-border bg-card p-6">
+            <p className="mb-4 text-xs font-semibold uppercase tracking-wider text-foreground">
+              Live Preview
+            </p>
+            <div className="flex min-h-[200px] items-center justify-center rounded-xl border border-border bg-muted/30 p-6">
+              {preview}
+            </div>
+          </div>
+        )}
+
+        {/* Install / Usage / Source */}
+        <div className="mt-6 space-y-4">
           <div className="rounded-xl border border-border bg-card p-5">
             <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-foreground">
               <Package className="h-3.5 w-3.5 text-primary" />
@@ -67,7 +91,17 @@ export default function RegistryDetailPage({ params }: { params: { slug: string 
           </div>
 
           <div className="rounded-xl border border-border bg-card p-5">
-            <p className="text-xs font-semibold uppercase tracking-wider text-foreground">Source</p>
+            <div className="flex items-center justify-between">
+              <p className="text-xs font-semibold uppercase tracking-wider text-foreground">Source</p>
+              <button
+                type="button"
+                onClick={copyCode}
+                className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-background px-2.5 py-1 text-[11px] font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+              >
+                {copied ? <Check className="h-3 w-3" /> : <Clipboard className="h-3 w-3" />}
+                {copied ? 'Copied!' : 'Copy'}
+              </button>
+            </div>
             <pre className="mt-3 max-h-96 overflow-auto rounded-lg border border-border bg-background p-4 text-xs font-mono text-foreground">
               {item.code}
             </pre>

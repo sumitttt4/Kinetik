@@ -2,7 +2,7 @@ export type RegistryItem = {
   name: string;
   slug: string;
   description: string;
-  category: 'hero' | 'motion' | 'input';
+  category: 'hero' | 'motion' | 'input' | 'feedback' | 'overlay';
   dependencies: string[];
   usage: string;
   code: string;
@@ -152,6 +152,96 @@ export const registry: RegistryItem[] = [
     dependencies: ['framer-motion', 'lucide-react'],
     usage: "import { ElasticDrawer } from '@/app/components/elastic-drawer';",
     code: `'use client';\n\nexport function ElasticDrawer() {\n  // copy from registry component source\n}`
+  },
+  {
+    name: 'Animated Toast',
+    slug: 'animated-toast',
+    description: 'Stackable toast notifications with spring enter/exit and swipe dismiss.',
+    category: 'feedback',
+    dependencies: ['framer-motion', 'lucide-react'],
+    usage: "import { AnimatedToast } from '@/app/components/animated-toast';",
+    code: `'use client';\n\nexport function AnimatedToast() {\n  // copy from registry component source\n}`
+  },
+  {
+    name: 'Skeleton Loader',
+    slug: 'skeleton-loader',
+    description: 'Animated placeholder shimmer for loading states.',
+    category: 'feedback',
+    dependencies: ['framer-motion'],
+    usage: "import { SkeletonLoader } from '@/app/components/skeleton-loader';",
+    code: `'use client';\n\nexport function SkeletonLoader() {\n  // copy from registry component source\n}`
+  },
+  {
+    name: 'Hover Card',
+    slug: 'hover-card',
+    description: 'Spring-animated popover card that appears on hover.',
+    category: 'overlay',
+    dependencies: ['framer-motion'],
+    usage: "import { HoverCard } from '@/app/components/hover-card';",
+    code: `'use client';\n\nexport function HoverCard() {\n  // copy from registry component source\n}`
+  },
+  {
+    name: 'Animated Accordion',
+    slug: 'animated-accordion',
+    description: 'Collapsible FAQ sections with spring height transitions.',
+    category: 'input',
+    dependencies: ['framer-motion', 'lucide-react'],
+    usage: "import { AnimatedAccordion } from '@/app/components/animated-accordion';",
+    code: `'use client';\n\nexport function AnimatedAccordion() {\n  // copy from registry component source\n}`
+  },
+  {
+    name: 'Command Palette',
+    slug: 'command-palette',
+    description: 'Spotlight-style search modal with keyboard navigation.',
+    category: 'overlay',
+    dependencies: ['framer-motion', 'lucide-react'],
+    usage: "import { CommandPalette } from '@/app/components/command-palette';",
+    code: `'use client';\n\nexport function CommandPalette() {\n  // copy from registry component source\n}`
+  },
+  {
+    name: 'Drag Reorder',
+    slug: 'drag-reorder',
+    description: 'Sortable list with drag-and-drop layout animations.',
+    category: 'input',
+    dependencies: ['framer-motion', 'lucide-react'],
+    usage: "import { DragReorder } from '@/app/components/drag-reorder';",
+    code: `'use client';\n\nexport function DragReorder() {\n  // copy from registry component source\n}`
+  },
+  {
+    name: 'Animated Progress',
+    slug: 'animated-progress',
+    description: 'Spring-driven progress bars that animate to target values.',
+    category: 'feedback',
+    dependencies: ['framer-motion'],
+    usage: "import { AnimatedProgress } from '@/app/components/animated-progress';",
+    code: `'use client';\n\nexport function AnimatedProgress() {\n  // copy from registry component source\n}`
+  },
+  {
+    name: 'Typewriter Text',
+    slug: 'typewriter-text',
+    description: 'Text that types and deletes itself through rotating phrases.',
+    category: 'motion',
+    dependencies: ['framer-motion'],
+    usage: "import { TypewriterText } from '@/app/components/typewriter-text';",
+    code: `'use client';\n\nexport function TypewriterText() {\n  // copy from registry component source\n}`
+  },
+  {
+    name: 'Scroll Reveal',
+    slug: 'scroll-reveal',
+    description: 'Elements that animate in as they enter the viewport.',
+    category: 'motion',
+    dependencies: ['framer-motion', 'lucide-react'],
+    usage: "import { ScrollReveal } from '@/app/components/scroll-reveal';",
+    code: `'use client';\n\nexport function ScrollReveal() {\n  // copy from registry component source\n}`
+  },
+  {
+    name: 'Confetti Button',
+    slug: 'confetti-button',
+    description: 'Button with particle burst celebration effect on click.',
+    category: 'feedback',
+    dependencies: ['framer-motion', 'lucide-react'],
+    usage: "import { ConfettiButton } from '@/app/components/confetti-button';",
+    code: `'use client';\n\nexport function ConfettiButton() {\n  // copy from registry component source\n}`
   }
 ];
 

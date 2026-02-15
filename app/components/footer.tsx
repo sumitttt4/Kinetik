@@ -7,7 +7,7 @@ const footerLinks = {
   product: [
     { label: 'Components', href: '/registry' },
     { label: 'Documentation', href: '/registry' },
-    { label: 'Changelog', href: '#' },
+    { label: 'Changelog', href: '/changelog' },
   ],
   community: [
     { label: 'GitHub', href: 'https://github.com/sumitttt4/Kinetik' },

@@ -1,8 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
-import { ArrowRight, Blocks, Copy, Sparkles, Zap } from 'lucide-react';
+import { useState, useEffect, useCallback } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
+import { ArrowRight, Blocks, Copy, Github, Search, Sparkles, X, Zap } from 'lucide-react';
 import { DynamicIsland } from './components/dynamic-island';
 import { FluidTabs } from './components/fluid-tabs';
 import { InfiniteScrollColumn } from './components/infinite-scroll-column';
@@ -22,148 +23,121 @@ import { BreathingGlow } from './components/breathing-glow';
 import { StaggerList } from './components/stagger-list';
 import { FlipCard } from './components/flip-card';
 import { ElasticDrawer } from './components/elastic-drawer';
+import { AnimatedToast } from './components/animated-toast';
+import { SkeletonLoader } from './components/skeleton-loader';
+import { HoverCard } from './components/hover-card';
+import { AnimatedAccordion } from './components/animated-accordion';
+import { CommandPalette } from './components/command-palette';
+import { DragReorder } from './components/drag-reorder';
+import { AnimatedProgress } from './components/animated-progress';
+import { TypewriterText } from './components/typewriter-text';
+import { ScrollReveal } from './components/scroll-reveal';
+import { ConfettiButton } from './components/confetti-button';
 import { registry, type RegistryItem } from '@/lib/registry';
 
 const cards = [
-  {
-    title: 'Dynamic Island',
-    copy: 'Fluid expansion from pill to context-rich notification.',
-    span: 'md:col-span-4',
-    component: <DynamicIsland />
-  },
-  {
-    title: 'Fluid Tabs',
-    copy: 'Spring-driven segmented control with layout animations.',
-    span: 'md:col-span-2',
-    component: <FluidTabs />
-  },
-  {
-    title: 'Morphing Dialog',
-    copy: 'Card-to-modal with seamless shared-element transitions.',
-    span: 'md:col-span-2',
-    component: <MorphingDialog />
-  },
-  {
-    title: 'Magnet Button',
-    copy: 'Pointer-following CTA with subtle perceived mass.',
-    span: 'md:col-span-2',
-    component: <MagnetButton />
-  },
-  {
-    title: 'Infinite Scroll Columns',
-    copy: 'Dual opposing marquees with smooth transform loops.',
-    span: 'md:col-span-2',
-    component: <InfiniteScrollColumn />
-  },
-  {
-    title: 'Neumorphic Newsletter',
-    copy: 'Soft-UI subscription card with recessed inputs and spring interactions.',
-    span: 'md:col-span-4',
-    component: <NewsletterCard />
-  },
-  {
-    title: 'Pulse Badge',
-    copy: 'Status indicators with animated pulsing rings.',
-    span: 'md:col-span-3',
-    component: <PulseBadge />
-  },
-  {
-    title: 'Shimmer Text',
-    copy: 'Gradient text with a sweeping shimmer effect.',
-    span: 'md:col-span-3',
-    component: <ShimmerText />
-  },
-  {
-    title: 'Tilt Card',
-    copy: '3D perspective card that follows cursor position.',
-    span: 'md:col-span-2',
-    component: <TiltCard />
-  },
-  {
-    title: 'Toggle Switch',
-    copy: 'Spring-animated toggle with icon transitions.',
-    span: 'md:col-span-2',
-    component: <ToggleSwitch />
-  },
-  {
-    title: 'Ripple Button',
-    copy: 'Click-reactive button with expanding ripple waves.',
-    span: 'md:col-span-2',
-    component: <RippleButton />
-  },
-  {
-    title: 'Animated Counter',
-    copy: 'Spring-driven number counters that animate on mount.',
-    span: 'md:col-span-3',
-    component: <AnimatedCounter />
-  },
-  {
-    title: 'Breathing Glow',
-    copy: 'Pulsing glow orbs with layered blur breathing effect.',
-    span: 'md:col-span-3',
-    component: <BreathingGlow />
-  },
-  {
-    title: 'Stagger List',
-    copy: 'Animated task list with staggered enter/exit transitions.',
-    span: 'md:col-span-3',
-    component: <StaggerList />
-  },
-  {
-    title: 'Flip Card',
-    copy: '3D card flip with spring physics and backface reveal.',
-    span: 'md:col-span-3',
-    component: <FlipCard />
-  },
-  {
-    title: 'Elastic Drawer',
-    copy: 'Spring-powered expandable drawer with staggered items.',
-    span: 'md:col-span-3',
-    component: <ElasticDrawer />
-  }
+  { title: 'Dynamic Island', copy: 'Fluid expansion from pill to notification.', span: 'md:col-span-4', component: <DynamicIsland /> },
+  { title: 'Fluid Tabs', copy: 'Spring-driven segmented control.', span: 'md:col-span-2', component: <FluidTabs /> },
+  { title: 'Morphing Dialog', copy: 'Shared-element card-to-modal.', span: 'md:col-span-2', component: <MorphingDialog /> },
+  { title: 'Magnet Button', copy: 'Pointer-following CTA.', span: 'md:col-span-2', component: <MagnetButton /> },
+  { title: 'Infinite Scroll Columns', copy: 'Dual opposing marquees.', span: 'md:col-span-2', component: <InfiniteScrollColumn /> },
+  { title: 'Neumorphic Newsletter', copy: 'Soft-UI subscription card.', span: 'md:col-span-4', component: <NewsletterCard /> },
+  { title: 'Pulse Badge', copy: 'Status indicators with pulsing rings.', span: 'md:col-span-3', component: <PulseBadge /> },
+  { title: 'Shimmer Text', copy: 'Gradient text with shimmer sweep.', span: 'md:col-span-3', component: <ShimmerText /> },
+  { title: 'Tilt Card', copy: '3D card following cursor.', span: 'md:col-span-2', component: <TiltCard /> },
+  { title: 'Toggle Switch', copy: 'Spring toggle with icon morph.', span: 'md:col-span-2', component: <ToggleSwitch /> },
+  { title: 'Ripple Button', copy: 'Click-reactive ripple waves.', span: 'md:col-span-2', component: <RippleButton /> },
+  { title: 'Animated Counter', copy: 'Spring number counters.', span: 'md:col-span-3', component: <AnimatedCounter /> },
+  { title: 'Breathing Glow', copy: 'Layered blur breathing orbs.', span: 'md:col-span-3', component: <BreathingGlow /> },
+  { title: 'Stagger List', copy: 'Staggered enter/exit list.', span: 'md:col-span-3', component: <StaggerList /> },
+  { title: 'Flip Card', copy: '3D flip with backface reveal.', span: 'md:col-span-3', component: <FlipCard /> },
+  { title: 'Elastic Drawer', copy: 'Spring expandable drawer.', span: 'md:col-span-3', component: <ElasticDrawer /> },
+  { title: 'Animated Toast', copy: 'Stackable spring notifications.', span: 'md:col-span-3', component: <AnimatedToast /> },
+  { title: 'Skeleton Loader', copy: 'Shimmer loading placeholders.', span: 'md:col-span-2', component: <SkeletonLoader /> },
+  { title: 'Hover Card', copy: 'Spring popover on hover.', span: 'md:col-span-2', component: <HoverCard /> },
+  { title: 'Animated Accordion', copy: 'Collapsible spring sections.', span: 'md:col-span-2', component: <AnimatedAccordion /> },
+  { title: 'Command Palette', copy: 'Spotlight search (⌘K).', span: 'md:col-span-3', component: <CommandPalette /> },
+  { title: 'Drag Reorder', copy: 'Sortable drag-and-drop list.', span: 'md:col-span-3', component: <DragReorder /> },
+  { title: 'Animated Progress', copy: 'Spring-driven progress bars.', span: 'md:col-span-2', component: <AnimatedProgress /> },
+  { title: 'Typewriter Text', copy: 'Auto-typing rotating phrases.', span: 'md:col-span-2', component: <TypewriterText /> },
+  { title: 'Scroll Reveal', copy: 'Viewport-triggered animations.', span: 'md:col-span-2', component: <ScrollReveal /> },
+  { title: 'Confetti Button', copy: 'Particle burst celebration.', span: 'md:col-span-3', component: <ConfettiButton /> },
 ];
 
 const features = [
-  {
-    icon: Zap,
-    title: 'Spring Physics',
-    description: 'Every animation uses physically accurate spring models. No more guessing durations and easing curves.',
-  },
-  {
-    icon: Copy,
-    title: 'Copy & Paste',
-    description: 'Each component is a single file. Copy the code, install dependencies, and ship in minutes.',
-  },
-  {
-    icon: Blocks,
-    title: 'Composable',
-    description: 'Built on Framer Motion, Tailwind CSS, and strict TypeScript. Fits into any React project.',
-  },
+  { icon: Zap, title: 'Spring Physics', description: 'Every animation uses physically accurate spring models. No guessing durations and easing curves.' },
+  { icon: Copy, title: 'Copy & Paste', description: 'Each component is a single file. Copy the code, install dependencies, and ship in minutes.' },
+  { icon: Blocks, title: 'Composable', description: 'Built on Framer Motion, Tailwind CSS, and strict TypeScript. Fits into any React project.' },
 ];
 
 const stats = [
-  { value: '16', label: 'Components' },
+  { value: '26', label: 'Components' },
   { value: '0', label: 'Dependencies*' },
   { value: '100%', label: 'TypeScript' },
   { value: 'A11y', label: 'Accessible' },
 ];
 
+const contributors = [
+  { name: 'Sumit Sharma', initials: 'SS', role: 'Creator' },
+  { name: 'Open Source', initials: 'OS', role: 'Community' },
+  { name: 'You?', initials: '??', role: 'Contribute' },
+];
+
+function FadeIn({ children, className, delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
+  const shouldReduceMotion = useReducedMotion();
+  return (
+    <motion.div
+      initial={shouldReduceMotion ? {} : { opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-60px' }}
+      transition={{ type: 'spring', stiffness: 100, damping: 20, delay }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
 export default function Home() {
   const [selected, setSelected] = useState<RegistryItem | null>(null);
+  const [cmdkOpen, setCmdkOpen] = useState(false);
+
+  const handleKeyDown = useCallback((e: KeyboardEvent) => {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      e.preventDefault();
+      setCmdkOpen(true);
+    }
+    if (e.key === 'Escape') {
+      setCmdkOpen(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [handleKeyDown]);
 
   return (
     <main className="min-h-screen bg-background text-foreground">
-      <Navbar />
+      <Navbar onCmdK={() => setCmdkOpen(true)} />
+
+      {/* ─── Global ⌘K Modal ─── */}
+      {cmdkOpen && (
+        <div className="fixed inset-0 z-[80] grid place-items-start justify-center pt-[18vh] bg-background/60 backdrop-blur-sm" onClick={() => setCmdkOpen(false)}>
+          <div className="w-full max-w-md overflow-hidden rounded-2xl border border-border bg-card shadow-2xl" onClick={(e) => e.stopPropagation()}>
+            <CmdKInner onClose={() => setCmdkOpen(false)} />
+          </div>
+        </div>
+      )}
 
       {/* ─── Hero ─── */}
       <section className="kinetik-hero-surface kinetik-grain relative overflow-hidden border-b border-border/40 pt-32 md:pt-40">
         <div className="kinetik-dots pointer-events-none absolute inset-0" />
-
         <div className="relative mx-auto max-w-6xl px-6 pb-20 md:pb-28">
-          <div className="mx-auto max-w-3xl text-center">
+          <FadeIn className="mx-auto max-w-3xl text-center">
             <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3.5 py-1.5 text-xs font-medium text-muted-foreground shadow-sm">
               <Sparkles className="h-3.5 w-3.5 text-primary" />
-              Open-source motion library
+              {registry.length} animated components
             </div>
 
             <h1 className="mt-8 text-4xl font-bold leading-[1.08] tracking-tight md:text-6xl lg:text-7xl">
@@ -177,66 +151,50 @@ export default function Home() {
             </p>
 
             <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-              <Link
-                href="/registry"
-                className="kinetik-glow-btn inline-flex h-11 items-center gap-2 rounded-xl bg-primary px-6 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-              >
-                Browse Components
-                <ArrowRight className="h-4 w-4" />
+              <Link href="/registry" className="kinetik-glow-btn inline-flex h-11 items-center gap-2 rounded-xl bg-primary px-6 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+                Browse Components <ArrowRight className="h-4 w-4" />
               </Link>
-              <a
-                href="#components"
-                className="inline-flex h-11 items-center justify-center rounded-xl border border-border bg-card px-6 text-sm font-semibold text-foreground transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-              >
+              <a href="#components" className="inline-flex h-11 items-center justify-center rounded-xl border border-border bg-card px-6 text-sm font-semibold text-foreground transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
                 See Examples
               </a>
             </div>
-          </div>
+          </FadeIn>
 
-          {/* Stats row */}
-          <div className="mx-auto mt-16 grid max-w-2xl grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border bg-border shadow-sm md:grid-cols-4">
-            {stats.map((stat) => (
-              <div key={stat.label} className="flex flex-col items-center gap-1 bg-card px-6 py-5">
-                <span className="text-2xl font-bold tracking-tight text-foreground">{stat.value}</span>
-                <span className="text-xs font-medium text-muted-foreground">{stat.label}</span>
-              </div>
-            ))}
-          </div>
+          <FadeIn delay={0.15}>
+            <div className="mx-auto mt-16 grid max-w-2xl grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border bg-border shadow-sm md:grid-cols-4">
+              {stats.map((stat) => (
+                <div key={stat.label} className="flex flex-col items-center gap-1 bg-card px-6 py-5">
+                  <span className="text-2xl font-bold tracking-tight text-foreground">{stat.value}</span>
+                  <span className="text-xs font-medium text-muted-foreground">{stat.label}</span>
+                </div>
+              ))}
+            </div>
+          </FadeIn>
         </div>
       </section>
 
       {/* ─── Features ─── */}
       <section className="border-b border-border/40 py-20 md:py-24">
         <div className="mx-auto max-w-6xl px-6">
-          <div className="mx-auto max-w-2xl text-center">
-            <p className="text-xs font-semibold uppercase tracking-widest text-primary">
-              Why Kinetik
-            </p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-4xl">
-              Motion should feel effortless
-            </h2>
+          <FadeIn className="mx-auto max-w-2xl text-center">
+            <p className="text-xs font-semibold uppercase tracking-widest text-primary">Why Kinetik</p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-4xl">Motion should feel effortless</h2>
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground md:text-base">
-              Stop hand-tuning keyframes. Every Kinetik component uses physically accurate spring models
-              that feel native across all devices.
+              Stop hand-tuning keyframes. Every Kinetik component uses physically accurate spring models that feel native.
             </p>
-          </div>
+          </FadeIn>
 
           <div className="mt-14 grid gap-6 md:grid-cols-3">
-            {features.map((feature) => (
-              <article
-                key={feature.title}
-                className="group rounded-2xl border border-border bg-card p-7 transition-all hover:border-primary/20 hover:shadow-lg hover:shadow-primary/5"
-              >
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
-                  <feature.icon className="h-5 w-5" />
-                </div>
-                <h3 className="mt-5 text-base font-semibold tracking-tight text-foreground">
-                  {feature.title}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  {feature.description}
-                </p>
-              </article>
+            {features.map((feature, i) => (
+              <FadeIn key={feature.title} delay={i * 0.1}>
+                <article className="group h-full rounded-2xl border border-border bg-card p-7 transition-all hover:border-primary/20 hover:shadow-lg hover:shadow-primary/5">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                    <feature.icon className="h-5 w-5" />
+                  </div>
+                  <h3 className="mt-5 text-base font-semibold tracking-tight text-foreground">{feature.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{feature.description}</p>
+                </article>
+              </FadeIn>
             ))}
           </div>
         </div>
@@ -245,42 +203,29 @@ export default function Home() {
       {/* ─── Component Grid ─── */}
       <section id="components" className="py-20 md:py-24">
         <div className="mx-auto max-w-6xl px-6">
-          <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-widest text-primary">
-                Registry
-              </p>
-              <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-4xl">
-                Component Library
-              </h2>
-              <p className="mt-3 max-w-lg text-sm text-muted-foreground md:text-base">
-                {cards.length} production-ready components. Each one is a single file with zero
-                external dependencies beyond Framer Motion.
-              </p>
+          <FadeIn>
+            <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-widest text-primary">Registry</p>
+                <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-4xl">Component Library</h2>
+                <p className="mt-3 max-w-lg text-sm text-muted-foreground md:text-base">
+                  {cards.length} production-ready components. Each one is a single file with zero external dependencies beyond Framer Motion.
+                </p>
+              </div>
+              <Link href="/registry" className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-border bg-card px-4 text-sm font-medium text-foreground transition-colors hover:bg-accent">
+                View All <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
             </div>
-            <Link
-              href="/registry"
-              className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-border bg-card px-4 text-sm font-medium text-foreground transition-colors hover:bg-accent"
-            >
-              View All <ArrowRight className="h-3.5 w-3.5" />
-            </Link>
-          </div>
+          </FadeIn>
 
           <div className="mt-10 grid gap-4 md:grid-cols-6">
             {cards.map((card) => (
-              <article
-                key={card.title}
-                className={`bento-card group relative overflow-hidden rounded-2xl p-5 ${card.span}`}
-              >
+              <article key={card.title} className={`bento-card group relative overflow-hidden rounded-2xl p-5 ${card.span}`}>
                 <div className="relative z-10">
                   <div className="flex items-start justify-between gap-3">
                     <div>
-                      <h3 className="text-sm font-semibold tracking-tight text-foreground">
-                        {card.title}
-                      </h3>
-                      <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
-                        {card.copy}
-                      </p>
+                      <h3 className="text-sm font-semibold tracking-tight text-foreground">{card.title}</h3>
+                      <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{card.copy}</p>
                     </div>
                     <button
                       type="button"
@@ -300,42 +245,125 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ─── Contributors ─── */}
+      <section className="border-t border-border/40 py-20 md:py-24">
+        <div className="mx-auto max-w-6xl px-6">
+          <FadeIn className="text-center">
+            <p className="text-xs font-semibold uppercase tracking-widest text-primary">Community</p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-4xl">Built by the community</h2>
+            <p className="mx-auto mt-4 max-w-lg text-sm leading-relaxed text-muted-foreground md:text-base">
+              Kinetik is open source. Contributions, ideas, and feedback are always welcome.
+            </p>
+          </FadeIn>
+
+          <FadeIn delay={0.1}>
+            <div className="mx-auto mt-12 flex max-w-md flex-wrap items-center justify-center gap-4">
+              {contributors.map((c) => (
+                <div key={c.name} className="flex items-center gap-3 rounded-2xl border border-border bg-card px-5 py-3.5 shadow-sm">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-sm font-bold text-primary">
+                    {c.initials}
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-foreground">{c.name}</p>
+                    <p className="text-[11px] text-muted-foreground">{c.role}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </FadeIn>
+
+          <FadeIn delay={0.2}>
+            <div className="mt-8 text-center">
+              <Link
+                href="https://github.com/sumitttt4/Kinetik"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 text-sm font-medium text-primary transition-colors hover:text-primary/80"
+              >
+                <Github className="h-4 w-4" /> Contribute on GitHub
+              </Link>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
       {/* ─── CTA ─── */}
       <section className="border-t border-border/40">
         <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
-          <div className="relative overflow-hidden rounded-3xl border border-border bg-card p-10 text-center md:p-16">
-            <div className="kinetik-dots pointer-events-none absolute inset-0 opacity-50" />
-            <div className="relative">
-              <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
-                Ready to ship <span className="kinetik-gradient-text">living UI</span>?
-              </h2>
-              <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-muted-foreground md:text-base">
-                Browse the full registry, copy any component, and have it running
-                in your project in under a minute.
-              </p>
-              <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-                <Link
-                  href="/registry"
-                  className="kinetik-glow-btn inline-flex h-11 items-center gap-2 rounded-xl bg-primary px-6 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
-                >
-                  Get Started <ArrowRight className="h-4 w-4" />
-                </Link>
-                <Link
-                  href="https://github.com/sumitttt4/Kinetik"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex h-11 items-center gap-2 rounded-xl border border-border bg-background px-6 text-sm font-semibold text-foreground transition-colors hover:bg-accent"
-                >
-                  Star on GitHub
-                </Link>
+          <FadeIn>
+            <div className="relative overflow-hidden rounded-3xl border border-border bg-card p-10 text-center md:p-16">
+              <div className="kinetik-dots pointer-events-none absolute inset-0 opacity-50" />
+              <div className="relative">
+                <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
+                  Ready to ship <span className="kinetik-gradient-text">living UI</span>?
+                </h2>
+                <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-muted-foreground md:text-base">
+                  Browse the full registry, copy any component, and have it running in your project in under a minute.
+                </p>
+                <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+                  <Link href="/registry" className="kinetik-glow-btn inline-flex h-11 items-center gap-2 rounded-xl bg-primary px-6 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90">
+                    Get Started <ArrowRight className="h-4 w-4" />
+                  </Link>
+                  <Link href="https://github.com/sumitttt4/Kinetik" target="_blank" rel="noreferrer" className="inline-flex h-11 items-center gap-2 rounded-xl border border-border bg-background px-6 text-sm font-semibold text-foreground transition-colors hover:bg-accent">
+                    Star on GitHub
+                  </Link>
+                </div>
               </div>
             </div>
-          </div>
+          </FadeIn>
         </div>
       </section>
 
       <Footer />
       <CodePanel item={selected} open={Boolean(selected)} onClose={() => setSelected(null)} />
     </main>
+  );
+}
+
+/* ─── Inline ⌘K Search ─── */
+function CmdKInner({ onClose }: { onClose: () => void }) {
+  const [query, setQuery] = useState('');
+
+  const filtered = registry.filter((item) =>
+    item.name.toLowerCase().includes(query.toLowerCase())
+  );
+
+  return (
+    <>
+      <div className="flex items-center gap-3 border-b border-border px-4">
+        <Search className="h-4 w-4 shrink-0 text-muted-foreground" />
+        <input
+          autoFocus
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Search components..."
+          className="h-12 flex-1 bg-transparent text-sm text-foreground outline-none placeholder:text-muted-foreground"
+          onKeyDown={(e) => e.key === 'Escape' && onClose()}
+        />
+        <button type="button" onClick={onClose} className="text-muted-foreground hover:text-foreground">
+          <X className="h-4 w-4" />
+        </button>
+      </div>
+      <div className="max-h-72 overflow-y-auto p-2">
+        {filtered.length === 0 ? (
+          <p className="py-8 text-center text-xs text-muted-foreground">No results found.</p>
+        ) : (
+          filtered.map((item) => (
+            <Link
+              key={item.slug}
+              href={`/registry/${item.slug}`}
+              onClick={onClose}
+              className="flex w-full items-center justify-between rounded-xl px-3 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+            >
+              <span>{item.name}</span>
+              <span className="text-[10px] uppercase tracking-wider text-muted-foreground/60">{item.category}</span>
+            </Link>
+          ))
+        )}
+      </div>
+      <div className="border-t border-border px-4 py-2 text-[10px] text-muted-foreground">
+        <kbd className="rounded border border-border bg-muted px-1">esc</kbd> to close
+      </div>
+    </>
   );
 }
