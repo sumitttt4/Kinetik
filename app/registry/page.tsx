@@ -8,7 +8,7 @@ import { Navbar } from '../components/navbar';
 import { Footer } from '../components/footer';
 import { cn } from '@/lib/utils';
 
-const categories = ['all', 'hero', 'motion', 'input'] as const;
+const categories = ['all', 'hero', 'motion', 'input', 'feedback', 'overlay'] as const;
 
 export default function RegistryPage() {
   const [query, setQuery] = useState('');
@@ -54,14 +54,14 @@ export default function RegistryPage() {
               className="h-10 w-full rounded-xl border border-input bg-card pl-10 pr-4 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             />
           </div>
-          <div className="flex gap-1 rounded-xl border border-border bg-card p-1">
+          <div className="flex flex-wrap gap-1 rounded-xl border border-border bg-card p-1">
             {categories.map((cat) => (
               <button
                 key={cat}
                 type="button"
                 onClick={() => setCategory(cat)}
                 className={cn(
-                  'rounded-lg px-3.5 py-1.5 text-xs font-medium capitalize transition-colors',
+                  'rounded-lg px-3 py-1.5 text-xs font-medium capitalize transition-colors',
                   category === cat
                     ? 'bg-primary text-primary-foreground shadow-sm'
                     : 'text-muted-foreground hover:text-foreground'

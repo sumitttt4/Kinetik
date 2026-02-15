@@ -6,7 +6,11 @@ import { ModeToggle } from '@/components/mode-toggle';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
 
-export function Navbar() {
+interface NavbarProps {
+  onCmdK?: () => void;
+}
+
+export function Navbar({ onCmdK }: NavbarProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
@@ -32,11 +36,21 @@ export function Navbar() {
               Components
             </Link>
             <Link
-              href="/registry"
+              href="/changelog"
               className="rounded-lg px-3 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
             >
-              Docs
+              Changelog
             </Link>
+            {onCmdK && (
+              <button
+                type="button"
+                onClick={onCmdK}
+                className="ml-1 flex items-center gap-2 rounded-lg border border-border bg-muted/50 px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+              >
+                Search…
+                <kbd className="rounded border border-border bg-background px-1.5 py-0.5 text-[10px] font-medium">⌘K</kbd>
+              </button>
+            )}
           </div>
 
           {/* Right side */}
@@ -90,11 +104,11 @@ export function Navbar() {
               Components
             </Link>
             <Link
-              href="/registry"
+              href="/changelog"
               onClick={() => setMobileOpen(false)}
               className="rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
             >
-              Docs
+              Changelog
             </Link>
             <div className="my-1 h-px bg-border" />
             <div className="flex items-center gap-2 px-3 py-1">
