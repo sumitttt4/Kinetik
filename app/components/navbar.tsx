@@ -1,69 +1,113 @@
 'use client';
 
 import Link from 'next/link';
-import { Github, Heart, Search } from 'lucide-react';
+import { Github, Heart, Menu, X } from 'lucide-react';
 import { ModeToggle } from '@/components/mode-toggle';
+import { useState } from 'react';
+import { cn } from '@/lib/utils';
 
 export function Navbar() {
+  const [mobileOpen, setMobileOpen] = useState(false);
+
   return (
-    <header className="fixed inset-x-0 top-0 z-[70] border-b border-border/70 bg-white/70 backdrop-blur-xl dark:border-white/10 dark:bg-[#070d22]/80">
-      <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4 md:px-6">
-        <div className="flex items-center gap-5">
+    <header className="fixed inset-x-0 top-0 z-[70]">
+      <div className="mx-auto max-w-6xl px-4 pt-4 md:px-6">
+        <nav className="flex h-14 items-center justify-between rounded-2xl border border-border/60 bg-background/70 px-4 shadow-sm backdrop-blur-xl dark:border-border/40 dark:bg-background/60">
+          {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5">
-            <span className="relative grid h-6 w-6 place-items-center rounded-full border border-foreground/20 bg-foreground/[0.04]">
-              <span className="h-2 w-2 rounded-full bg-primary" />
-              <span className="absolute inset-1 rounded-full border border-foreground/15" />
+            <span className="relative grid h-7 w-7 place-items-center rounded-lg bg-primary">
+              <span className="h-2 w-2 rounded-full bg-white" />
             </span>
-            <span className="text-[15px] font-semibold tracking-tight text-foreground">Kinetik</span>
+            <span className="text-[15px] font-bold tracking-tight text-foreground">
+              Kinetik
+            </span>
           </Link>
 
-          <nav className="hidden items-center gap-4 md:flex">
-            <Link href="/registry" className="text-sm font-medium tracking-tight text-muted-foreground transition-colors hover:text-foreground">
-              Docs
-            </Link>
-            <Link href="/registry" className="text-sm font-medium tracking-tight text-muted-foreground transition-colors hover:text-foreground">
+          {/* Desktop nav */}
+          <div className="hidden items-center gap-1 md:flex">
+            <Link
+              href="/registry"
+              className="rounded-lg px-3 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+            >
               Components
             </Link>
-          </nav>
-        </div>
+            <Link
+              href="/registry"
+              className="rounded-lg px-3 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+            >
+              Docs
+            </Link>
+          </div>
 
-        <div className="flex items-center gap-2">
-          <button
-            type="button"
-            aria-label="Search documentation"
-            className="hidden h-9 items-center gap-2 rounded-lg border border-border bg-background/75 px-3 text-sm text-muted-foreground shadow-[inset_0_1px_0_0_rgba(255,255,255,0.8)] transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring md:inline-flex"
-          >
-            <Search className="h-4 w-4" />
-            <span>Search docs...</span>
-            <span className="rounded-md border border-border bg-muted px-1.5 py-0.5 text-[11px] font-medium text-muted-foreground">⌘K</span>
-          </button>
-
-          <Link
-            href="https://github.com/sumitttt4/Kinetik"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Star Kinetik on GitHub"
-            className="hidden h-9 items-center rounded-lg border border-border bg-background/80 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring md:inline-flex"
-          >
-            <span className="inline-flex items-center gap-1.5 px-2.5 text-foreground transition-colors hover:text-primary">
+          {/* Right side */}
+          <div className="flex items-center gap-1.5">
+            <Link
+              href="https://github.com/sumitttt4/Kinetik"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="GitHub"
+              className="hidden h-8 w-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring md:inline-flex"
+            >
               <Github className="h-4 w-4" />
-              <span className="font-medium tracking-tight">Star</span>
-            </span>
-            <span className="h-5 w-px bg-border" />
-            <span className="px-2.5 text-xs font-semibold text-muted-foreground">1.2k</span>
-          </Link>
+            </Link>
+            <Link
+              href="https://buymeacoffee.com/sumitsharmq"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Sponsor"
+              className="hidden h-8 w-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-accent hover:text-pink-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring md:inline-flex"
+            >
+              <Heart className="h-4 w-4" />
+            </Link>
+            <div className="hidden h-4 w-px bg-border md:block" />
+            <ModeToggle />
 
-          <Link
-            href="https://buymeacoffee.com/sumitsharmq"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Sponsor"
-            className="grid h-9 w-9 place-items-center rounded-lg border border-border bg-background/75 text-muted-foreground transition-colors hover:text-pink-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-          >
-            <Heart className="h-4 w-4" />
-          </Link>
+            {/* Mobile hamburger */}
+            <button
+              type="button"
+              onClick={() => setMobileOpen(!mobileOpen)}
+              aria-label="Toggle menu"
+              className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-accent hover:text-foreground md:hidden"
+            >
+              {mobileOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+            </button>
+          </div>
+        </nav>
 
-          <ModeToggle />
+        {/* Mobile menu */}
+        <div
+          className={cn(
+            'mt-2 overflow-hidden rounded-2xl border border-border/60 bg-background/95 backdrop-blur-xl transition-all duration-200 md:hidden',
+            mobileOpen ? 'max-h-60 py-3 opacity-100' : 'max-h-0 border-transparent py-0 opacity-0'
+          )}
+        >
+          <div className="flex flex-col gap-1 px-3">
+            <Link
+              href="/registry"
+              onClick={() => setMobileOpen(false)}
+              className="rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+            >
+              Components
+            </Link>
+            <Link
+              href="/registry"
+              onClick={() => setMobileOpen(false)}
+              className="rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+            >
+              Docs
+            </Link>
+            <div className="my-1 h-px bg-border" />
+            <div className="flex items-center gap-2 px-3 py-1">
+              <Link
+                href="https://github.com/sumitttt4/Kinetik"
+                target="_blank"
+                rel="noreferrer"
+                className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              >
+                GitHub
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </header>

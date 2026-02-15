@@ -3,11 +3,15 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
-  title: 'Kinetik | Living Interfaces',
-  description: 'Copy-paste registry of physically modeled UI components.'
+  title: 'Kinetik - Motion primitives for the modern web',
+  description: 'A curated registry of physics-driven, copy-paste UI components built with Framer Motion, Tailwind CSS, and TypeScript.',
+  keywords: ['react', 'components', 'animation', 'framer-motion', 'tailwind', 'ui', 'motion'],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -16,7 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={inter.className}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >
