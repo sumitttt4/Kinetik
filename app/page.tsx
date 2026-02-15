@@ -11,6 +11,16 @@ import { MorphingDialog } from './components/morphing-dialog';
 import { CodePanel } from './components/code-panel';
 import { Navbar } from './components/navbar';
 import { NewsletterCard } from './components/newsletter-card';
+import { PulseBadge } from './components/pulse-badge';
+import { ShimmerText } from './components/shimmer-text';
+import { TiltCard } from './components/tilt-card';
+import { ToggleSwitch } from './components/toggle-switch';
+import { RippleButton } from './components/ripple-button';
+import { AnimatedCounter } from './components/animated-counter';
+import { BreathingGlow } from './components/breathing-glow';
+import { StaggerList } from './components/stagger-list';
+import { FlipCard } from './components/flip-card';
+import { ElasticDrawer } from './components/elastic-drawer';
 import { registry, type RegistryItem } from '@/lib/registry';
 
 const cards = [
@@ -49,6 +59,66 @@ const cards = [
     copy: 'Soft-UI subscription card with recessed inputs and spring interactions.',
     span: 'md:col-span-4',
     component: <NewsletterCard />
+  },
+  {
+    title: 'Pulse Badge',
+    copy: 'Status indicators with animated pulsing rings and glow.',
+    span: 'md:col-span-2',
+    component: <PulseBadge />
+  },
+  {
+    title: 'Shimmer Text',
+    copy: 'Gradient text with a sweeping shimmer loading effect.',
+    span: 'md:col-span-2',
+    component: <ShimmerText />
+  },
+  {
+    title: 'Tilt Card',
+    copy: '3D perspective card that responds to cursor position.',
+    span: 'md:col-span-2',
+    component: <TiltCard />
+  },
+  {
+    title: 'Toggle Switch',
+    copy: 'Spring-animated toggle with rotating icon transitions.',
+    span: 'md:col-span-2',
+    component: <ToggleSwitch />
+  },
+  {
+    title: 'Ripple Button',
+    copy: 'Click-reactive button with expanding ripple waves.',
+    span: 'md:col-span-2',
+    component: <RippleButton />
+  },
+  {
+    title: 'Animated Counter',
+    copy: 'Spring-driven number counters that animate on mount.',
+    span: 'md:col-span-2',
+    component: <AnimatedCounter />
+  },
+  {
+    title: 'Breathing Glow',
+    copy: 'Pulsing glow orbs with layered blur breathing effect.',
+    span: 'md:col-span-3',
+    component: <BreathingGlow />
+  },
+  {
+    title: 'Stagger List',
+    copy: 'Animated task list with staggered enter and exit transitions.',
+    span: 'md:col-span-3',
+    component: <StaggerList />
+  },
+  {
+    title: 'Flip Card',
+    copy: '3D card flip with spring physics and backface reveal.',
+    span: 'md:col-span-3',
+    component: <FlipCard />
+  },
+  {
+    title: 'Elastic Drawer',
+    copy: 'Spring-powered expandable drawer with staggered items.',
+    span: 'md:col-span-3',
+    component: <ElasticDrawer />
   }
 ];
 
@@ -101,7 +171,7 @@ export default function Home() {
       <section id="wall-of-value" className="py-16 md:py-20">
         <div className="mx-auto mb-8 max-w-6xl px-6 md:mb-10">
           <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">The Wall of Value</h2>
-          <p className="mt-3 text-sm text-muted-foreground md:text-base">Six premium components, physically modeled and copy-paste ready.</p>
+          <p className="mt-3 text-sm text-muted-foreground md:text-base">Sixteen premium components, physically modeled and copy-paste ready.</p>
         </div>
 
         <div className="mx-auto grid max-w-6xl gap-5 px-6 md:grid-cols-6">
@@ -141,7 +211,7 @@ export default function Home() {
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">Registry docs, contribution-ready architecture, and scalable component standards for community growth.</p>
           </article>
         </div>
-        
+
         <div className="mt-10 rounded-3xl border border-border bg-card p-8 md:p-10">
           <h2 className="text-2xl font-semibold tracking-tight">Launch checklist</h2>
           <div className="mt-6 grid gap-3 text-sm text-muted-foreground md:grid-cols-3">
