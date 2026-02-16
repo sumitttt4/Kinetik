@@ -62,12 +62,12 @@ export function CommandPalette() {
 
       <AnimatePresence>
         {open && (
-          <>
+          <CommandPalettePortal>
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-50 bg-background/60 backdrop-blur-sm"
+              className="fixed inset-0 z-[100] bg-background/60 backdrop-blur-sm"
               onClick={() => setOpen(false)}
             />
             <motion.div
@@ -75,7 +75,7 @@ export function CommandPalette() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.97 }}
               transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-              className="fixed left-1/2 top-[20%] z-50 w-full max-w-md -translate-x-1/2 overflow-hidden rounded-xl border border-border bg-card shadow-2xl"
+              className="fixed left-1/2 top-[20%] z-[101] w-full max-w-md -translate-x-1/2 overflow-hidden rounded-xl border border-border bg-card shadow-2xl"
               onKeyDown={handleKeyDown}
             >
               <div className="flex items-center gap-3 border-b border-border px-4">
@@ -124,9 +124,18 @@ export function CommandPalette() {
                 </span>
               </div>
             </motion.div>
-          </>
+          </CommandPalettePortal>
         )}
       </AnimatePresence>
     </div>
   );
+}
+
+import { createPortal } from 'react-dom';
+
+function CommandPalettePortal({ children }: { children: React.ReactNode }) {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  if (!mounted) return null;
+  return createPortal(children, document.body);
 }

@@ -5,6 +5,7 @@ import { Github, Heart, Menu, X } from 'lucide-react';
 import { ModeToggle } from '@/components/mode-toggle';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
+import { Button } from '@/app/components/ui/button';
 
 interface NavbarProps {
   onCmdK?: () => void;
@@ -41,14 +42,17 @@ export function Navbar({ onCmdK }: NavbarProps) {
               Changelog
             </Link>
             {onCmdK && (
-              <button
-                type="button"
+              <Button
+                variant="outline"
+                className="relative h-9 w-full justify-start rounded-[0.5rem] bg-background text-sm font-normal text-muted-foreground shadow-none sm:pr-12 md:w-40 lg:w-64"
                 onClick={onCmdK}
-                className="ml-1 flex items-center gap-2 rounded-lg border border-border bg-muted/50 px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
               >
-                Search…
-                <kbd className="rounded border border-border bg-background px-1.5 py-0.5 text-[10px] font-medium">⌘K</kbd>
-              </button>
+                <span className="hidden lg:inline-flex">Search...</span>
+                <span className="inline-flex lg:hidden">Search...</span>
+                <kbd className="pointer-events-none absolute right-[0.3rem] top-[0.3rem] hidden h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex">
+                  <span className="text-xs">⌘</span>K
+                </kbd>
+              </Button>
             )}
           </div>
 
