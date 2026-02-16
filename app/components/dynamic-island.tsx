@@ -1,13 +1,11 @@
 'use client';
 
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { Bell, CheckCircle2 } from 'lucide-react';
 import { useState } from 'react';
 
 export function DynamicIsland() {
   const [open, setOpen] = useState(false);
-  const shouldReduceMotion = useReducedMotion();
-  const transition = shouldReduceMotion ? { duration: 0 } : { type: 'spring', stiffness: 350, damping: 25 };
 
   return (
     <motion.button

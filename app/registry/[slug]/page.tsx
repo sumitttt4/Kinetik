@@ -22,18 +22,19 @@ export default function RegistryDetailPage({ params }: { params: { slug: string 
     shadowClass: 'shadow-md',
   });
 
-  if (!item) {
-    router.push('/registry');
-    return null;
-  }
-
   // Fetch real source code from API
   useEffect(() => {
+    if (!item) return;
     fetch(`/api/source/${params.slug}`)
       .then((res) => res.json())
       .then((data) => setRealSource(data.source))
       .catch(() => setRealSource(item.code));
-  }, [params.slug, item.code]);
+  }, [params.slug, item]);
+
+  if (!item) {
+    router.push('/registry');
+    return null;
+  }
 
   const displayCode = realSource || item.code;
 

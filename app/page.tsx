@@ -217,7 +217,7 @@ export default function Home() {
                 <div className="flex items-center gap-3">
                   <select
                     value={previewMode}
-                    onChange={(e) => setPreviewMode(e.target.value as any)}
+                    onChange={(e) => setPreviewMode(e.target.value as typeof previewMode)}
                     className="h-9 rounded-lg border border-border bg-background px-3 text-sm font-medium text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20"
                   >
                     <option value="buttons">Buttons</option>
