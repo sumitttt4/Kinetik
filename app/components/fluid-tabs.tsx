@@ -21,7 +21,7 @@ export function FluidTabs() {
   }
 
   return (
-    <div role="tablist" aria-label="Fluid tabs" onKeyDown={handleKeyDown} className="mx-auto flex w-full max-w-sm rounded-full border border-slate-200 bg-slate-100 p-1">
+    <div role="tablist" aria-label="Fluid tabs" onKeyDown={handleKeyDown} className="mx-auto flex w-full max-w-sm rounded-full border border-border bg-muted/50 p-1">
       {tabs.map((tab) => (
         <button
           key={tab}
@@ -31,8 +31,8 @@ export function FluidTabs() {
           type="button"
           onClick={() => setActive(tab)}
           className={cn(
-            'relative z-10 flex-1 rounded-full px-3 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400',
-            active === tab ? 'text-slate-900' : 'text-slate-600'
+            'relative z-10 flex-1 rounded-full px-3 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
+            active === tab ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'
           )}
         >
           {active === tab && (

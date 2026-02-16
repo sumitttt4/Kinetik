@@ -20,16 +20,29 @@ const config = {
     },
     extend: {
       colors: {
+        brand: {
+          primary: '#1e3a8a',
+          accent: '#1e3a8a',
+          background: '#FFFFFF',
+          surface: '#F1F5F9',
+          text: '#0F172A',
+          muted: '#64748B',
+          border: '#E2E8F0',
+        },
+        dark: {
+          primary: '#1e3a8a',
+          accent: '#1e3a8a',
+          background: '#020617',
+          surface: '#1E293B',
+          text: '#F8FAFC',
+          muted: '#94A3B8',
+          border: '#1E293B',
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
-        brand: {
-          400: "#60a5fa",
-          500: "#3b82f6",
-          600: "#2563eb",
-        },
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -58,6 +71,13 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+      },
+      fontFamily: {
+        heading: ["var(--font-plus-jakarta)", "system-ui", "sans-serif"],
+        display: ["var(--font-plus-jakarta)", "system-ui", "sans-serif"],
+        body: ["var(--font-inter)", "system-ui", "sans-serif"],
+        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
+        mono: ["var(--font-ibm-mono)", "monospace"],
       },
       borderRadius: {
         lg: "var(--radius)",

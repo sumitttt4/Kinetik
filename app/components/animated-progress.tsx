@@ -46,7 +46,7 @@ export function AnimatedProgress() {
   return (
     <div className="w-full max-w-xs space-y-4">
       <ProgressBar value={values[0]} label="Design" color="bg-blue-500" />
-      <ProgressBar value={values[1]} label="Development" color="bg-violet-500" />
+      <ProgressBar value={values[1]} label="Development" color="bg-indigo-500" />
       <ProgressBar value={values[2]} label="Testing" color="bg-emerald-500" />
       <button
         type="button"

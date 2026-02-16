@@ -29,7 +29,7 @@ export function RippleButton() {
     <button
       type="button"
       onClick={handleClick}
-      className="relative overflow-hidden rounded-xl bg-gradient-to-r from-violet-600 to-indigo-600 px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-indigo-500/25 transition-shadow hover:shadow-xl hover:shadow-indigo-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
+      className="relative overflow-hidden rounded-xl bg-gradient-to-r from-[#1e3a8a] to-[#3b82f6] px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-blue-900/25 transition-shadow hover:shadow-xl hover:shadow-blue-900/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
     >
       <span className="relative z-10 inline-flex items-center gap-2">
         <Zap className="h-4 w-4" />

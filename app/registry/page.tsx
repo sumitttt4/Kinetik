@@ -79,7 +79,7 @@ export default function RegistryPage() {
             <Link
               key={item.slug}
               href={`/registry/${item.slug}`}
-              className="group rounded-2xl border border-border bg-card p-5 transition-all hover:border-primary/20 hover:shadow-lg hover:shadow-primary/5"
+              className="group rounded-xl border border-border bg-card p-5 transition-all hover:border-primary/20 hover:shadow-lg hover:shadow-primary/5"
             >
               <div className="flex items-start justify-between gap-3">
                 <div>

@@ -30,7 +30,7 @@ export function CodePanel({ open, item, onClose }: CodePanelProps) {
       onClick={onClose}
     >
       <div
-        className="w-full max-w-2xl rounded-2xl border border-border bg-card p-6 shadow-2xl"
+        className="w-full max-w-2xl rounded-xl border border-border bg-card p-6 shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
@@ -86,7 +86,7 @@ export function CodePanel({ open, item, onClose }: CodePanelProps) {
         <button
           type="button"
           onClick={copyCode}
-          className="mt-5 inline-flex h-9 items-center gap-2 rounded-xl bg-primary px-4 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+          className="mt-5 inline-flex h-9 items-center gap-2 rounded-lg bg-primary px-4 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
         >
           {copied ? <Check className="h-4 w-4" /> : <Clipboard className="h-4 w-4" />}
           {copied ? 'Copied!' : 'Copy code'}

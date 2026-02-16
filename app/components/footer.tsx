@@ -18,16 +18,15 @@ const footerLinks = {
 
 export function Footer() {
   return (
-    <footer className="border-t border-border">
+    <footer className="border-t border-border bg-card">
       <div className="mx-auto max-w-6xl px-6 py-16">
         <div className="grid gap-10 md:grid-cols-4">
           {/* Brand column */}
           <div className="md:col-span-2">
-            <Link href="/" className="flex items-center gap-2.5">
-              <span className="relative grid h-7 w-7 place-items-center rounded-lg bg-primary">
-                <span className="h-2 w-2 rounded-full bg-white" />
-              </span>
-              <span className="text-[15px] font-bold tracking-tight text-foreground">
+            <Link href="/" className="flex items-center gap-3">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/logo.svg" alt="Kinetik Logo" className="h-7 w-7" />
+              <span className="font-heading text-lg font-bold tracking-tight text-foreground">
                 Kinetik
               </span>
             </Link>
@@ -57,7 +56,7 @@ export function Footer() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Sponsor"
-                className="flex h-8 w-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-accent hover:text-pink-500"
+                className="flex h-8 w-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-accent hover:text-primary"
               >
                 <Heart className="h-4 w-4" />
               </Link>

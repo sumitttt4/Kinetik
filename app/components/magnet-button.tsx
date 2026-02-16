@@ -33,7 +33,7 @@ export function MagnetButton() {
       onMouseMove={handleMove}
       onMouseLeave={() => setPosition({ x: 0, y: 0 })}
       onFocus={() => setPosition({ x: 0, y: 0 })}
-      className="rounded-full border border-sky-300 bg-sky-500 px-6 py-3 text-sm font-semibold text-white shadow-[0_14px_35px_-18px_rgba(14,165,233,1)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300"
+      className="rounded-full border border-primary/20 bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/30 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
       animate={{ x: position.x, y: position.y }}
       transition={{ type: 'spring', stiffness: 150, damping: 15, mass: 0.1 }}
     >

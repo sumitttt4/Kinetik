@@ -4,18 +4,38 @@ import Link from 'next/link';
 import { ArrowLeft, Clipboard, Package, Check } from 'lucide-react';
 import { getRegistryItem } from '@/lib/registry';
 import { previewMap } from '@/lib/preview-map';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { ComponentCustomizer, type CustomizerState } from '@/app/components/component-customizer';
+import { cn } from '@/lib/utils';
 
 export default function RegistryDetailPage({ params }: { params: { slug: string } }) {
   const item = getRegistryItem(params.slug);
   const router = useRouter();
   const [copied, setCopied] = useState(false);
+  const [realSource, setRealSource] = useState<string | null>(null);
+  const [customizerState, setCustomizerState] = useState<CustomizerState>({
+    colorName: 'blue',
+    colorHex: '#3b82f6',
+    shade: 500,
+    widthClass: 'max-w-md',
+    shadowClass: 'shadow-md',
+  });
 
   if (!item) {
     router.push('/registry');
     return null;
   }
+
+  // Fetch real source code from API
+  useEffect(() => {
+    fetch(`/api/source/${params.slug}`)
+      .then((res) => res.json())
+      .then((data) => setRealSource(data.source))
+      .catch(() => setRealSource(item.code));
+  }, [params.slug, item.code]);
+
+  const displayCode = realSource || item.code;
 
   const installLine = item.dependencies.length
     ? `pnpm add ${item.dependencies.join(' ')}`
@@ -24,8 +44,8 @@ export default function RegistryDetailPage({ params }: { params: { slug: string 
   const preview = previewMap[item.slug];
 
   async function copyCode() {
-    if (!item) return;
-    await navigator.clipboard.writeText(item.code);
+    if (!displayCode) return;
+    await navigator.clipboard.writeText(displayCode);
     setCopied(true);
     setTimeout(() => setCopied(false), 1500);
   }
@@ -56,19 +76,33 @@ export default function RegistryDetailPage({ params }: { params: { slug: string 
           </div>
         </div>
 
-        {/* Live Preview */}
+        {/* ─── Customizer Toolbar ─── */}
+        <div className="mt-8">
+          <ComponentCustomizer onChange={setCustomizerState} />
+        </div>
+
+        {/* ─── Live Preview ─── */}
         {preview && (
-          <div className="mt-8 rounded-2xl border border-border bg-card p-6">
+          <div className="mt-6 rounded-xl border border-border bg-card p-6">
             <p className="mb-4 text-xs font-semibold uppercase tracking-wider text-foreground">
               Live Preview
             </p>
-            <div className="flex min-h-[200px] items-center justify-center rounded-xl border border-border bg-muted/30 p-6">
+            <div
+              className={cn(
+                'mx-auto flex min-h-[200px] items-center justify-center rounded-xl border border-border bg-muted/30 p-6 transition-all duration-300',
+                customizerState.widthClass,
+                customizerState.shadowClass
+              )}
+              style={{
+                '--custom-primary': customizerState.colorHex,
+              } as React.CSSProperties}
+            >
               {preview}
             </div>
           </div>
         )}
 
-        {/* Install / Usage / Source */}
+        {/* ─── Install / Usage / Source ─── */}
         <div className="mt-6 space-y-4">
           <div className="rounded-xl border border-border bg-card p-5">
             <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-foreground">
@@ -103,7 +137,7 @@ export default function RegistryDetailPage({ params }: { params: { slug: string 
               </button>
             </div>
             <pre className="mt-3 max-h-96 overflow-auto rounded-lg border border-border bg-background p-4 text-xs font-mono text-foreground">
-              {item.code}
+              {displayCode}
             </pre>
           </div>
         </div>

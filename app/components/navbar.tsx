@@ -18,11 +18,10 @@ export function Navbar({ onCmdK }: NavbarProps) {
       <div className="mx-auto max-w-6xl px-4 pt-4 md:px-6">
         <nav className="flex h-14 items-center justify-between rounded-2xl border border-border/60 bg-background/70 px-4 shadow-sm backdrop-blur-xl dark:border-border/40 dark:bg-background/60">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5">
-            <span className="relative grid h-7 w-7 place-items-center rounded-lg bg-primary">
-              <span className="h-2 w-2 rounded-full bg-white" />
-            </span>
-            <span className="text-[15px] font-bold tracking-tight text-foreground">
+          <Link href="/" className="flex items-center gap-3">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/logo.svg" alt="Kinetik Logo" className="h-8 w-8" />
+            <span className="font-heading text-xl font-bold tracking-tight text-foreground">
               Kinetik
             </span>
           </Link>
@@ -31,13 +30,13 @@ export function Navbar({ onCmdK }: NavbarProps) {
           <div className="hidden items-center gap-1 md:flex">
             <Link
               href="/registry"
-              className="rounded-lg px-3 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+              className="rounded-lg px-3 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
             >
               Components
             </Link>
             <Link
               href="/changelog"
-              className="rounded-lg px-3 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+              className="rounded-lg px-3 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
             >
               Changelog
             </Link>
@@ -45,7 +44,7 @@ export function Navbar({ onCmdK }: NavbarProps) {
               <button
                 type="button"
                 onClick={onCmdK}
-                className="ml-1 flex items-center gap-2 rounded-lg border border-border bg-muted/50 px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+                className="ml-1 flex items-center gap-2 rounded-lg border border-border bg-muted/50 px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
               >
                 Search…
                 <kbd className="rounded border border-border bg-background px-1.5 py-0.5 text-[10px] font-medium">⌘K</kbd>
@@ -69,7 +68,7 @@ export function Navbar({ onCmdK }: NavbarProps) {
               target="_blank"
               rel="noreferrer"
               aria-label="Sponsor"
-              className="hidden h-8 w-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-accent hover:text-pink-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring md:inline-flex"
+              className="hidden h-8 w-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-accent hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring md:inline-flex"
             >
               <Heart className="h-4 w-4" />
             </Link>

@@ -1,16 +1,22 @@
 'use client';
 
 import { motion, useReducedMotion } from 'framer-motion';
+import { useState, useEffect } from 'react';
 import { Fingerprint } from 'lucide-react';
 
 export function BreathingGlow() {
   const shouldReduceMotion = useReducedMotion();
+  const [mounted, setMounted] = useState(false); // Add mounted state
+
+  useEffect(() => {
+    setMounted(true); // Set mounted to true after initial render
+  }, []);
 
   return (
     <div className="flex items-center justify-center gap-8">
       {/* Glow orb */}
       <div className="relative flex items-center justify-center">
-        {!shouldReduceMotion && (
+        {mounted && !shouldReduceMotion && ( // Guard with mounted state
           <>
             <motion.div
               className="absolute h-20 w-20 rounded-full bg-primary/20 blur-xl"
@@ -35,15 +41,15 @@ export function BreathingGlow() {
 
       {/* Breathing ring */}
       <div className="relative flex items-center justify-center">
-        {!shouldReduceMotion && (
+        {mounted && !shouldReduceMotion && (
           <motion.div
-            className="absolute h-16 w-16 rounded-full border-2 border-emerald-400/50"
+            className="absolute h-16 w-16 rounded-full border-2 border-primary/50"
             animate={{ scale: [1, 1.4, 1], opacity: [0.6, 0, 0.6] }}
             transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
           />
         )}
-        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-500 shadow-lg shadow-emerald-500/20">
-          <span className="text-sm font-bold text-white">AI</span>
+        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary shadow-lg shadow-primary/20">
+          <span className="text-sm font-bold text-primary-foreground">AI</span>
         </div>
       </div>
     </div>

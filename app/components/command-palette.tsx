@@ -75,7 +75,7 @@ export function CommandPalette() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.97 }}
               transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-              className="fixed left-1/2 top-[20%] z-50 w-full max-w-md -translate-x-1/2 overflow-hidden rounded-2xl border border-border bg-card shadow-2xl"
+              className="fixed left-1/2 top-[20%] z-50 w-full max-w-md -translate-x-1/2 overflow-hidden rounded-xl border border-border bg-card shadow-2xl"
               onKeyDown={handleKeyDown}
             >
               <div className="flex items-center gap-3 border-b border-border px-4">

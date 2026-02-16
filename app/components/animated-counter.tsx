@@ -38,7 +38,10 @@ function Counter({ target, label, icon: Icon }: { target: number; label: string;
   );
 }
 
-export function AnimatedCounter() {
+export function AnimatedCounter({ value }: { value?: number }) {
+  if (value !== undefined) {
+    return <Counter target={value} label="Metric" icon={TrendingUp} />;
+  }
   return (
     <div className="flex items-center gap-4">
       <Counter target={12847} label="Users" icon={Users} />

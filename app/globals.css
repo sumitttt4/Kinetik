@@ -4,91 +4,163 @@
 
 @layer base {
   :root {
-    /* LIGHT MODE — "Clarity" */
-    --background: 0 0% 99%;
-    --foreground: 240 10% 3.9%;
+    /* LIGHT MODE */
+    --background: 0 0% 100%;
+    /* #FFFFFF */
+    --foreground: 222 47% 11%;
+    /* #0F172A */
 
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
+    /* #FFFFFF */
+    --card-foreground: 222 47% 11%;
+    /* #0F172A */
 
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
+    /* #FFFFFF */
+    --popover-foreground: 222 47% 11%;
+    /* #0F172A */
 
-    --primary: 221.2 83.2% 53.3%;
+    --primary: 224 64% 33%;
+    /* #1e3a8a */
     --primary-foreground: 0 0% 100%;
+    /* White text on primary */
 
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
+    --secondary: 210 40% 96%;
+    /* #F1F5F9 (Surface) */
+    --secondary-foreground: 222 47% 11%;
+    /* #0F172A */
 
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
+    --muted: 210 40% 96%;
+    /* #F1F5F9 (Background for muted elements) */
+    --muted-foreground: 215 16% 47%;
+    /* #64748B (Text for muted elements) */
 
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
+    --accent: 224 64% 33%;
+    /* #1e3a8a */
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 221.2 83.2% 53.3%;
+    --border: 214 32% 91%;
+    /* #E2E8F0 */
+    --input: 214 32% 91%;
+    /* #E2E8F0 */
+    --ring: 224 64% 33%;
+    /* #1e3a8a */
 
-    --radius: 0.625rem;
+    --radius: 0.5rem;
   }
 
   .dark {
-    /* DARK MODE — "Void" */
-    --background: 240 10% 3.9%;
+    /* DARK MODE - Optimized for Deep Black feel */
+    --background: 0 0% 0%;
+    /* #000000 */
     --foreground: 0 0% 98%;
+    /* #FAFAFA */
 
-    --card: 240 6% 10%;
+    --card: 0 0% 3%;
+    /* #080808 */
     --card-foreground: 0 0% 98%;
 
-    --popover: 240 6% 10%;
+    --popover: 0 0% 3%;
+    /* #080808 */
     --popover-foreground: 0 0% 98%;
 
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 240 10% 3.9%;
+    --primary: 224 76% 48%;
+    /* #1d4ed8 (Brighter Blue for contrast on black) */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 240 3.7% 15.9%;
+    --secondary: 0 0% 8%;
+    /* #141414 */
     --secondary-foreground: 0 0% 98%;
 
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
+    --muted: 0 0% 8%;
+    /* #141414 */
+    --muted-foreground: 0 0% 63.9%;
 
-    --accent: 240 3.7% 15.9%;
+    --accent: 0 0% 8%;
+    /* #141414 */
     --accent-foreground: 0 0% 98%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 217.2 91.2% 59.8%;
+    --border: 0 0% 12%;
+    /* #1F1F1F */
+    --input: 0 0% 12%;
+    /* #1F1F1F */
+    --ring: 224 76% 48%;
   }
 }
+
 
 @layer base {
   * {
     border-color: hsl(var(--border));
   }
+
   html {
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
   body {
     @apply bg-background text-foreground;
   }
-  h1, h2, h3, h4, h5, h6 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading text-primary;
     letter-spacing: -0.025em;
   }
 }
 
-/* ─── Dot grid background ─── */
+/* ─── Brand Pattern Backgrounds ─── */
+
+/* Dot Grid */
 .kinetik-dots {
-  background-image: radial-gradient(circle, hsl(var(--foreground) / 0.07) 1px, transparent 1px);
+  background-image: radial-gradient(circle, hsl(var(--primary) / 0.08) 1px, transparent 1px);
   background-size: 24px 24px;
+}
+
+/* Line Pattern — subtle parallel diagonal lines */
+.kinetik-lines {
+  background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 40L40 0' stroke='%231e3a8a' stroke-width='0.5' opacity='0.07' fill='none'/%3E%3C/svg%3E");
+  background-size: 40px 40px;
+}
+
+/* Circle Composition — concentric arcs */
+.kinetik-circles {
+  background-image:
+    radial-gradient(circle at 80% 20%, hsl(var(--primary) / 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 20% 80%, hsl(var(--primary) / 0.04) 0%, transparent 40%);
+}
+
+/* Wave Pattern — horizontal waves */
+.kinetik-waves {
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='20' viewBox='0 0 100 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 10 Q25 0 50 10 Q75 20 100 10' stroke='%231e3a8a' stroke-width='0.5' opacity='0.06' fill='none'/%3E%3C/svg%3E");
+  background-size: 100px 20px;
+}
+
+/* Geometric Texture — small triangles */
+.kinetik-geometric {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5L55 55H5Z' stroke='%231e3a8a' stroke-width='0.4' opacity='0.05' fill='none'/%3E%3C/svg%3E");
+  background-size: 60px 60px;
+}
+
+/* Diagonal Lines — tighter spacing */
+.kinetik-diagonal {
+  background-image: repeating-linear-gradient(135deg,
+      transparent,
+      transparent 10px,
+      hsl(var(--primary) / 0.04) 10px,
+      hsl(var(--primary) / 0.04) 11px);
 }
 
 /* ─── Hero surface ─── */
@@ -111,6 +183,7 @@
   background-repeat: repeat;
   background-size: 128px;
 }
+
 .dark .kinetik-grain::before {
   opacity: 0.04;
 }
@@ -120,12 +193,14 @@
   @apply border border-border bg-card;
   transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
+
 .bento-card:hover {
   border-color: hsl(var(--primary) / 0.3);
   box-shadow:
     0 0 0 1px hsl(var(--primary) / 0.08),
     0 20px 50px -20px hsl(var(--primary) / 0.12);
 }
+
 .dark .bento-card:hover {
   box-shadow:
     0 0 0 1px hsl(var(--primary) / 0.15),
@@ -134,7 +209,7 @@
 
 /* ─── Gradient text ─── */
 .kinetik-gradient-text {
-  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #3b82f6 100%);
+  background: linear-gradient(135deg, hsl(var(--primary)) 0%, #3b82f6 50%, hsl(var(--primary)) 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -145,46 +220,68 @@
 .kinetik-glow-btn {
   position: relative;
 }
+
 .kinetik-glow-btn::after {
   content: '';
   position: absolute;
   inset: -1px;
   border-radius: inherit;
-  background: linear-gradient(135deg, hsl(var(--primary)) 0%, #8b5cf6 100%);
+  background: linear-gradient(135deg, hsl(var(--primary)) 0%, #3b82f6 100%);
   opacity: 0;
   z-index: -1;
   filter: blur(12px);
   transition: opacity 0.3s;
 }
+
 .kinetik-glow-btn:hover::after {
   opacity: 0.4;
 }
 
 /* ─── Marquee ─── */
 @keyframes kinetik-marquee-up {
-  from { transform: translateY(0%); }
-  to { transform: translateY(-50%); }
+  from {
+    transform: translateY(0%);
+  }
+
+  to {
+    transform: translateY(-50%);
+  }
 }
+
 @keyframes kinetik-marquee-down {
-  from { transform: translateY(-50%); }
-  to { transform: translateY(0%); }
+  from {
+    transform: translateY(-50%);
+  }
+
+  to {
+    transform: translateY(0%);
+  }
 }
+
 .kinetik-marquee {
   animation: kinetik-marquee-up 10s linear infinite;
 }
+
 .kinetik-marquee-reverse {
   animation: kinetik-marquee-down 10s linear infinite;
 }
 
 /* ─── Shimmer text ─── */
 @keyframes shimmer {
-  0% { background-position: 200% center; }
-  100% { background-position: -200% center; }
+  0% {
+    background-position: 200% center;
+  }
+
+  100% {
+    background-position: -200% center;
+  }
 }
 
 /* ─── Reduced motion ─── */
 @media (prefers-reduced-motion: reduce) {
-  .kinetik-marquee, .kinetik-marquee-reverse {
+
+  .kinetik-marquee,
+  .kinetik-marquee-reverse {
     animation-duration: 0.01ms;
     animation-iteration-count: 1;
   }
