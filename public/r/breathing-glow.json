@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "breathing-glow",
+  "title": "Breathing Glow",
+  "description": "Pulsing glow orbs with layered blur breathing effect.",
+  "dependencies": [
+    "framer-motion",
+    "lucide-react"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/kinetik/breathing-glow/breathing-glow.tsx",
+      "content": "'use client';\r\n\r\nimport { motion, useReducedMotion } from 'framer-motion';\r\nimport { useState, useEffect } from 'react';\r\nimport { Fingerprint } from 'lucide-react';\r\n\r\nexport function BreathingGlow() {\r\n  const shouldReduceMotion = useReducedMotion();\r\n  const [mounted, setMounted] = useState(false); // Add mounted state\r\n\r\n  useEffect(() => {\r\n    setMounted(true); // Set mounted to true after initial render\r\n  }, []);\r\n\r\n  return (\r\n    <div className=\"flex items-center justify-center gap-8\">\r\n      {/* Glow orb */}\r\n      <div className=\"relative flex items-center justify-center\">\r\n        {mounted && !shouldReduceMotion && ( // Guard with mounted state\r\n          <>\r\n            <motion.div\r\n              className=\"absolute h-20 w-20 rounded-full bg-primary/20 blur-xl\"\r\n              animate={{ scale: [1, 1.5, 1], opacity: [0.4, 0.15, 0.4] }}\r\n              transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}\r\n            />\r\n            <motion.div\r\n              className=\"absolute h-14 w-14 rounded-full bg-primary/30 blur-md\"\r\n              animate={{ scale: [1, 1.3, 1], opacity: [0.6, 0.25, 0.6] }}\r\n              transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: 0.15 }}\r\n            />\r\n          </>\r\n        )}\r\n        <motion.div\r\n          animate={shouldReduceMotion ? {} : { scale: [1, 1.08, 1] }}\r\n          transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}\r\n          className=\"relative flex h-14 w-14 items-center justify-center rounded-full border border-primary/30 bg-gradient-to-br from-primary/20 to-primary/5 shadow-lg shadow-primary/10\"\r\n        >\r\n          <Fingerprint className=\"h-6 w-6 text-primary\" />\r\n        </motion.div>\r\n      </div>\r\n\r\n      {/* Breathing ring */}\r\n      <div className=\"relative flex items-center justify-center\">\r\n        {mounted && !shouldReduceMotion && (\r\n          <motion.div\r\n            className=\"absolute h-16 w-16 rounded-full border-2 border-primary/50\"\r\n            animate={{ scale: [1, 1.4, 1], opacity: [0.6, 0, 0.6] }}\r\n            transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}\r\n          />\r\n        )}\r\n        <div className=\"flex h-12 w-12 items-center justify-center rounded-full bg-primary shadow-lg shadow-primary/20\">\r\n          <span className=\"text-sm font-bold text-primary-foreground\">AI</span>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  );\r\n}\r\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:ui"
+}

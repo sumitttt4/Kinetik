@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tilt-card",
+  "title": "Tilt Card",
+  "description": "3D perspective card that responds to cursor position.",
+  "dependencies": [
+    "framer-motion",
+    "lucide-react"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/kinetik/tilt-card/tilt-card.tsx",
+      "content": "'use client';\r\n\r\nimport { useReducedMotion, motion, useMotionValue, useSpring, useTransform } from 'framer-motion';\r\nimport { useRef } from 'react';\r\nimport { Layers } from 'lucide-react';\r\n\r\nexport function TiltCard() {\r\n  const ref = useRef<HTMLDivElement>(null);\r\n  const shouldReduceMotion = useReducedMotion();\r\n\r\n  const x = useMotionValue(0.5);\r\n  const y = useMotionValue(0.5);\r\n\r\n  const rotateX = useSpring(useTransform(y, [0, 1], [8, -8]), {\r\n    stiffness: 300,\r\n    damping: 30,\r\n  });\r\n  const rotateY = useSpring(useTransform(x, [0, 1], [-8, 8]), {\r\n    stiffness: 300,\r\n    damping: 30,\r\n  });\r\n\r\n  function handleMove(e: React.MouseEvent<HTMLDivElement>) {\r\n    if (shouldReduceMotion) return;\r\n    const rect = ref.current?.getBoundingClientRect();\r\n    if (!rect) return;\r\n    x.set((e.clientX - rect.left) / rect.width);\r\n    y.set((e.clientY - rect.top) / rect.height);\r\n  }\r\n\r\n  function handleLeave() {\r\n    x.set(0.5);\r\n    y.set(0.5);\r\n  }\r\n\r\n  return (\r\n    <div style={{ perspective: 600 }} className=\"flex items-center justify-center\">\r\n      <motion.div\r\n        ref={ref}\r\n        onMouseMove={handleMove}\r\n        onMouseLeave={handleLeave}\r\n        style={shouldReduceMotion ? {} : { rotateX, rotateY }}\r\n        className=\"relative w-56 rounded-2xl border border-border bg-gradient-to-br from-slate-50 to-slate-100 p-6 shadow-lg dark:from-slate-800 dark:to-slate-900\"\r\n      >\r\n        <div className=\"mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10\">\r\n          <Layers className=\"h-5 w-5 text-primary\" />\r\n        </div>\r\n        <p className=\"text-sm font-semibold text-foreground\">3D Perspective</p>\r\n        <p className=\"mt-1 text-xs text-muted-foreground\">\r\n          Move your cursor across the card to see it respond in 3D space.\r\n        </p>\r\n      </motion.div>\r\n    </div>\r\n  );\r\n}\r\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:ui"
+}

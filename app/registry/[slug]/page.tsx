@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowLeft, Clipboard, Package, Check } from 'lucide-react';
+import { ArrowLeft, Clipboard, Package, Check, Terminal } from 'lucide-react';
 import { getRegistryItem } from '@/lib/registry';
 import { previewMap } from '@/lib/preview-map';
 import { useState, useEffect } from 'react';
@@ -13,6 +13,7 @@ export default function RegistryDetailPage({ params }: { params: { slug: string 
   const item = getRegistryItem(params.slug);
   const router = useRouter();
   const [copied, setCopied] = useState(false);
+  const [copiedCli, setCopiedCli] = useState(false);
   const [realSource, setRealSource] = useState<string | null>(null);
   const [customizerState, setCustomizerState] = useState<CustomizerState>({
     colorName: 'blue',
@@ -38,11 +39,19 @@ export default function RegistryDetailPage({ params }: { params: { slug: string 
 
   const displayCode = realSource || item.code;
 
+  const cliCommand = `npx shadcn@latest add https://kinetik.dev/r/${item.slug}.json`;
+
   const installLine = item.dependencies.length
-    ? `pnpm add ${item.dependencies.join(' ')}`
+    ? `npm add ${item.dependencies.join(' ')}`
     : 'No additional dependencies required.';
 
   const preview = previewMap[item.slug];
+
+  async function copyCli() {
+    await navigator.clipboard.writeText(cliCommand);
+    setCopiedCli(true);
+    setTimeout(() => setCopiedCli(false), 1500);
+  }
 
   async function copyCode() {
     if (!displayCode) return;
@@ -105,16 +114,47 @@ export default function RegistryDetailPage({ params }: { params: { slug: string 
 
         {/* ─── Install / Usage / Source ─── */}
         <div className="mt-6 space-y-4">
-          <div className="rounded-xl border border-border bg-card p-5">
-            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-foreground">
-              <Package className="h-3.5 w-3.5 text-primary" />
-              Install
+          {/* CLI Install (Primary) */}
+          <div className="rounded-xl border-2 border-primary/20 bg-card p-5">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-foreground">
+                <Terminal className="h-3.5 w-3.5 text-primary" />
+                Install via CLI
+              </div>
+              <button
+                type="button"
+                onClick={copyCli}
+                className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-background px-2.5 py-1 text-[11px] font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+              >
+                {copiedCli ? <Check className="h-3 w-3" /> : <Clipboard className="h-3 w-3" />}
+                {copiedCli ? 'Copied!' : 'Copy'}
+              </button>
             </div>
-            <code className="mt-3 block rounded-lg border border-border bg-background px-4 py-2.5 text-xs font-mono text-foreground">
-              {installLine}
+            <code className="mt-3 block rounded-lg border border-primary/10 bg-primary/5 px-4 py-2.5 text-xs font-mono text-foreground">
+              {cliCommand}
             </code>
+            <p className="mt-2 text-[11px] text-muted-foreground">
+              Requires <a href="https://ui.shadcn.com/docs/cli" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">shadcn CLI</a>. Auto-installs deps and copies the component into your project.
+            </p>
           </div>
 
+          {/* Manual Install (Secondary) */}
+          {item.dependencies.length > 0 && (
+            <div className="rounded-xl border border-border bg-card p-5">
+              <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-foreground">
+                <Package className="h-3.5 w-3.5 text-primary" />
+                Manual Install
+              </div>
+              <code className="mt-3 block rounded-lg border border-border bg-background px-4 py-2.5 text-xs font-mono text-foreground">
+                {installLine}
+              </code>
+              <p className="mt-2 text-[11px] text-muted-foreground">
+                Then copy the source code below into your project.
+              </p>
+            </div>
+          )}
+
+          {/* Usage */}
           <div className="rounded-xl border border-border bg-card p-5">
             <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-foreground">
               <Clipboard className="h-3.5 w-3.5 text-primary" />

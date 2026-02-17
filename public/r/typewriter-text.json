@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "typewriter-text",
+  "title": "Typewriter Text",
+  "description": "Text that types and deletes itself through rotating phrases.",
+  "dependencies": [
+    "framer-motion"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/kinetik/typewriter-text/typewriter-text.tsx",
+      "content": "'use client';\r\n\r\nimport { useState, useEffect, useCallback } from 'react';\r\nimport { motion, useReducedMotion } from 'framer-motion';\r\nimport { cn } from '@/lib/utils';\r\n\r\nconst phrases = [\r\n  'Build interfaces that feel alive.',\r\n  'Ship with spring physics.',\r\n  'Copy, paste, animate.',\r\n  'Motion made simple.',\r\n];\r\n\r\nexport function TypewriterText() {\r\n  const shouldReduceMotion = useReducedMotion();\r\n  const [phraseIndex, setPhraseIndex] = useState(0);\r\n  const [charIndex, setCharIndex] = useState(0);\r\n  const [isDeleting, setIsDeleting] = useState(false);\r\n\r\n  const current = phrases[phraseIndex];\r\n\r\n  const tick = useCallback(() => {\r\n    if (shouldReduceMotion) {\r\n      setCharIndex(current.length);\r\n      return;\r\n    }\r\n\r\n    if (!isDeleting) {\r\n      if (charIndex < current.length) {\r\n        setCharIndex((c) => c + 1);\r\n      } else {\r\n        setTimeout(() => setIsDeleting(true), 1500);\r\n      }\r\n    } else {\r\n      if (charIndex > 0) {\r\n        setCharIndex((c) => c - 1);\r\n      } else {\r\n        setIsDeleting(false);\r\n        setPhraseIndex((p) => (p + 1) % phrases.length);\r\n      }\r\n    }\r\n  }, [charIndex, isDeleting, current, shouldReduceMotion]);\r\n\r\n  useEffect(() => {\r\n    const speed = isDeleting ? 40 : 70;\r\n    const timer = setTimeout(tick, speed);\r\n    return () => clearTimeout(timer);\r\n  }, [tick, isDeleting]);\r\n\r\n  return (\r\n    <div className=\"flex flex-col items-center gap-2\">\r\n      <div className=\"flex items-center text-lg font-semibold tracking-tight text-foreground md:text-xl\">\r\n        <span>{current.slice(0, charIndex)}</span>\r\n        <motion.span\r\n          animate={{ opacity: [1, 0] }}\r\n          transition={{ duration: 0.6, repeat: Infinity, repeatType: 'reverse' }}\r\n          className={cn(\r\n            'ml-0.5 inline-block h-5 w-0.5 bg-primary',\r\n            shouldReduceMotion && 'opacity-100'\r\n          )}\r\n        />\r\n      </div>\r\n      <p className=\"text-xs text-muted-foreground\">\r\n        Phrase {phraseIndex + 1} of {phrases.length}\r\n      </p>\r\n    </div>\r\n  );\r\n}\r\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:ui"
+}

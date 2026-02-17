@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "animated-counter",
+  "title": "Animated Counter",
+  "description": "Spring-driven number counters that animate on mount.",
+  "dependencies": [
+    "framer-motion",
+    "lucide-react"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/kinetik/animated-counter/animated-counter.tsx",
+      "content": "'use client';\r\n\r\nimport { useEffect, useState } from 'react';\r\nimport { motion, useSpring, useTransform, useReducedMotion } from 'framer-motion';\r\nimport { TrendingUp, Users, Star } from 'lucide-react';\r\n\r\nfunction Counter({ target, label, icon: Icon }: { target: number; label: string; icon: React.ElementType }) {\r\n  const shouldReduceMotion = useReducedMotion();\r\n  const [triggered, setTriggered] = useState(false);\r\n\r\n  const spring = useSpring(0, {\r\n    stiffness: 50,\r\n    damping: 20,\r\n    mass: 1,\r\n  });\r\n\r\n  const display = useTransform(spring, (v) =>\r\n    Math.round(v).toLocaleString()\r\n  );\r\n\r\n  useEffect(() => {\r\n    if (!triggered) {\r\n      setTriggered(true);\r\n      spring.set(shouldReduceMotion ? target : target);\r\n    }\r\n  }, [triggered, spring, target, shouldReduceMotion]);\r\n\r\n  return (\r\n    <div className=\"flex flex-col items-center gap-2 rounded-2xl border border-border bg-background px-5 py-4 shadow-sm\">\r\n      <Icon className=\"h-4.5 w-4.5 text-primary\" />\r\n      <motion.span className=\"text-2xl font-bold tabular-nums text-foreground\">\r\n        {display}\r\n      </motion.span>\r\n      <span className=\"text-[11px] font-medium uppercase tracking-wider text-muted-foreground\">\r\n        {label}\r\n      </span>\r\n    </div>\r\n  );\r\n}\r\n\r\nexport function AnimatedCounter({ value }: { value?: number }) {\r\n  if (value !== undefined) {\r\n    return <Counter target={value} label=\"Metric\" icon={TrendingUp} />;\r\n  }\r\n  return (\r\n    <div className=\"flex items-center gap-4\">\r\n      <Counter target={12847} label=\"Users\" icon={Users} />\r\n      <Counter target={4923} label=\"Stars\" icon={Star} />\r\n      <Counter target={99} label=\"Uptime %\" icon={TrendingUp} />\r\n    </div>\r\n  );\r\n}\r\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:ui"
+}

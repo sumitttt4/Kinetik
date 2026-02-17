@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pulse-badge",
+  "title": "Pulse Badge",
+  "description": "Status indicators with animated pulsing rings and glow.",
+  "dependencies": [
+    "framer-motion"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/kinetik/pulse-badge/pulse-badge.tsx",
+      "content": "'use client';\r\n\r\nimport { motion, useReducedMotion } from 'framer-motion';\r\nimport { cn } from '@/lib/utils';\r\n\r\nconst statuses = [\r\n  { label: 'Live', color: 'bg-emerald-500', ring: 'ring-emerald-400/40' },\r\n  { label: 'Pending', color: 'bg-amber-500', ring: 'ring-amber-400/40' },\r\n  { label: 'Offline', color: 'bg-red-500', ring: 'ring-red-400/40' },\r\n] as const;\r\n\r\nexport function PulseBadge() {\r\n  const shouldReduceMotion = useReducedMotion();\r\n\r\n  return (\r\n    <div className=\"flex items-center gap-5\">\r\n      {statuses.map((status) => (\r\n        <div\r\n          key={status.label}\r\n          className=\"flex items-center gap-2.5 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground shadow-sm\"\r\n        >\r\n          <span className=\"relative flex h-2.5 w-2.5\">\r\n            {!shouldReduceMotion && (\r\n              <motion.span\r\n                className={cn(\r\n                  'absolute inset-0 rounded-full opacity-75 ring-4',\r\n                  status.color,\r\n                  status.ring\r\n                )}\r\n                animate={{ scale: [1, 1.8, 1], opacity: [0.75, 0, 0.75] }}\r\n                transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}\r\n              />\r\n            )}\r\n            <span\r\n              className={cn('relative inline-flex h-2.5 w-2.5 rounded-full', status.color)}\r\n            />\r\n          </span>\r\n          {status.label}\r\n        </div>\r\n      ))}\r\n    </div>\r\n  );\r\n}\r\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:ui"
+}

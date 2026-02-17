@@ -1,0 +1,439 @@
+{
+    "$schema": "https://ui.shadcn.com/schema/registry.json",
+    "name": "kinetik",
+    "homepage": "https://kinetik.dev",
+    "items": [
+        {
+            "name": "dynamic-island",
+            "type": "registry:ui",
+            "title": "Dynamic Island",
+            "description": "Fluid expansion from a compact pill into contextual status content.",
+            "dependencies": [
+                "framer-motion",
+                "lucide-react"
+            ],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "registry/kinetik/dynamic-island/dynamic-island.tsx",
+                    "type": "registry:component"
+                }
+            ]
+        },
+        {
+            "name": "fluid-tabs",
+            "type": "registry:ui",
+            "title": "Fluid Tabs",
+            "description": "Segmented control with spring-driven active background motion.",
+            "dependencies": [
+                "framer-motion"
+            ],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "registry/kinetik/fluid-tabs/fluid-tabs.tsx",
+                    "type": "registry:component"
+                }
+            ]
+        },
+        {
+            "name": "morphing-dialog",
+            "type": "registry:ui",
+            "title": "Morphing Dialog",
+            "description": "Shared-element transition from card preview to expanded modal.",
+            "dependencies": [
+                "framer-motion",
+                "lucide-react"
+            ],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "registry/kinetik/morphing-dialog/morphing-dialog.tsx",
+                    "type": "registry:component"
+                }
+            ]
+        },
+        {
+            "name": "magnet-button",
+            "type": "registry:ui",
+            "title": "Magnet Button",
+            "description": "Pointer-reactive button with subtle magnetic attraction.",
+            "dependencies": [
+                "framer-motion",
+                "lucide-react"
+            ],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "registry/kinetik/magnet-button/magnet-button.tsx",
+                    "type": "registry:component"
+                }
+            ]
+        },
+        {
+            "name": "infinite-scroll-columns",
+            "type": "registry:ui",
+            "title": "Infinite Scroll Columns",
+            "description": "Opposing marquee columns for testimonials and visual loops.",
+            "dependencies": [],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "registry/kinetik/infinite-scroll-columns/infinite-scroll-column.tsx",
+                    "type": "registry:component"
+                }
+            ]
+        },
+        {
+            "name": "floating-toolbar",
+            "type": "registry:ui",
+            "title": "Floating Toolbar",
+            "description": "Minimalist navigation pill with precise layout transitions.",
+            "dependencies": [
+                "framer-motion",
+                "lucide-react"
+            ],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "registry/kinetik/floating-toolbar/floating-toolbar.tsx",
+                    "type": "registry:component"
+                }
+            ]
+        },
+        {
+            "name": "pulse-badge",
+            "type": "registry:ui",
+            "title": "Pulse Badge",
+            "description": "Status indicators with animated pulsing rings and glow.",
+            "dependencies": [
+                "framer-motion"
+            ],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "registry/kinetik/pulse-badge/pulse-badge.tsx",
+                    "type": "registry:component"
+                }
+            ]
+        },
+        {
+            "name": "shimmer-text",
+            "type": "registry:ui",
+            "title": "Shimmer Text",
+            "description": "Text with a sweeping gradient shimmer effect.",
+            "dependencies": [
+                "framer-motion"
+            ],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "registry/kinetik/shimmer-text/shimmer-text.tsx",
+                    "type": "registry:component"
+                }
+            ]
+        },
+        {
+            "name": "tilt-card",
+            "type": "registry:ui",
+            "title": "Tilt Card",
+            "description": "3D perspective card that responds to cursor position.",
+            "dependencies": [
+                "framer-motion",
+                "lucide-react"
+            ],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "registry/kinetik/tilt-card/tilt-card.tsx",
+                    "type": "registry:component"
+                }
+            ]
+        },
+        {
+            "name": "toggle-switch",
+            "type": "registry:ui",
+            "title": "Toggle Switch",
+            "description": "Spring-animated toggle with icon morph transitions.",
+            "dependencies": [
+                "framer-motion",
+                "lucide-react"
+            ],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "registry/kinetik/toggle-switch/toggle-switch.tsx",
+                    "type": "registry:component"
+                }
+            ]
+        },
+        {
+            "name": "ripple-button",
+            "type": "registry:ui",
+            "title": "Ripple Button",
+            "description": "Click-reactive button with expanding ripple waves.",
+            "dependencies": [
+                "framer-motion",
+                "lucide-react"
+            ],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "registry/kinetik/ripple-button/ripple-button.tsx",
+                    "type": "registry:component"
+                }
+            ]
+        },
+        {
+            "name": "animated-counter",
+            "type": "registry:ui",
+            "title": "Animated Counter",
+            "description": "Spring-driven number counters that animate on mount.",
+            "dependencies": [
+                "framer-motion",
+                "lucide-react"
+            ],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "registry/kinetik/animated-counter/animated-counter.tsx",
+                    "type": "registry:component"
+                }
+            ]
+        },
+        {
+            "name": "breathing-glow",
+            "type": "registry:ui",
+            "title": "Breathing Glow",
+            "description": "Pulsing glow orbs with layered blur breathing effect.",
+            "dependencies": [
+                "framer-motion",
+                "lucide-react"
+            ],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "registry/kinetik/breathing-glow/breathing-glow.tsx",
+                    "type": "registry:component"
+                }
+            ]
+        },
+        {
+            "name": "stagger-list",
+            "type": "registry:ui",
+            "title": "Stagger List",
+            "description": "Animated task list with staggered enter and exit transitions.",
+            "dependencies": [
+                "framer-motion",
+                "lucide-react"
+            ],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "registry/kinetik/stagger-list/stagger-list.tsx",
+                    "type": "registry:component"
+                }
+            ]
+        },
+        {
+            "name": "flip-card",
+            "type": "registry:ui",
+            "title": "Flip Card",
+            "description": "3D card flip with spring physics and backface reveal.",
+            "dependencies": [
+                "framer-motion",
+                "lucide-react"
+            ],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "registry/kinetik/flip-card/flip-card.tsx",
+                    "type": "registry:component"
+                }
+            ]
+        },
+        {
+            "name": "elastic-drawer",
+            "type": "registry:ui",
+            "title": "Elastic Drawer",
+            "description": "Spring-powered expandable drawer with staggered items.",
+            "dependencies": [
+                "framer-motion",
+                "lucide-react"
+            ],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "registry/kinetik/elastic-drawer/elastic-drawer.tsx",
+                    "type": "registry:component"
+                }
+            ]
+        },
+        {
+            "name": "animated-toast",
+            "type": "registry:ui",
+            "title": "Animated Toast",
+            "description": "Stackable toast notifications with spring enter/exit and swipe dismiss.",
+            "dependencies": [
+                "framer-motion",
+                "lucide-react"
+            ],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "registry/kinetik/animated-toast/animated-toast.tsx",
+                    "type": "registry:component"
+                }
+            ]
+        },
+        {
+            "name": "skeleton-loader",
+            "type": "registry:ui",
+            "title": "Skeleton Loader",
+            "description": "Animated placeholder shimmer for loading states.",
+            "dependencies": [
+                "framer-motion"
+            ],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "registry/kinetik/skeleton-loader/skeleton-loader.tsx",
+                    "type": "registry:component"
+                }
+            ]
+        },
+        {
+            "name": "hover-card",
+            "type": "registry:ui",
+            "title": "Hover Card",
+            "description": "Spring-animated popover card that appears on hover.",
+            "dependencies": [
+                "framer-motion"
+            ],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "registry/kinetik/hover-card/hover-card.tsx",
+                    "type": "registry:component"
+                }
+            ]
+        },
+        {
+            "name": "animated-accordion",
+            "type": "registry:ui",
+            "title": "Animated Accordion",
+            "description": "Collapsible FAQ sections with spring height transitions.",
+            "dependencies": [
+                "framer-motion",
+                "lucide-react"
+            ],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "registry/kinetik/animated-accordion/animated-accordion.tsx",
+                    "type": "registry:component"
+                }
+            ]
+        },
+        {
+            "name": "command-palette",
+            "type": "registry:ui",
+            "title": "Command Palette",
+            "description": "Spotlight-style search modal with keyboard navigation.",
+            "dependencies": [
+                "framer-motion",
+                "lucide-react"
+            ],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "registry/kinetik/command-palette/command-palette.tsx",
+                    "type": "registry:component"
+                }
+            ]
+        },
+        {
+            "name": "drag-reorder",
+            "type": "registry:ui",
+            "title": "Drag Reorder",
+            "description": "Sortable list with drag-and-drop layout animations.",
+            "dependencies": [
+                "framer-motion",
+                "lucide-react"
+            ],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "registry/kinetik/drag-reorder/drag-reorder.tsx",
+                    "type": "registry:component"
+                }
+            ]
+        },
+        {
+            "name": "animated-progress",
+            "type": "registry:ui",
+            "title": "Animated Progress",
+            "description": "Spring-driven progress bars that animate to target values.",
+            "dependencies": [
+                "framer-motion"
+            ],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "registry/kinetik/animated-progress/animated-progress.tsx",
+                    "type": "registry:component"
+                }
+            ]
+        },
+        {
+            "name": "typewriter-text",
+            "type": "registry:ui",
+            "title": "Typewriter Text",
+            "description": "Text that types and deletes itself through rotating phrases.",
+            "dependencies": [
+                "framer-motion"
+            ],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "registry/kinetik/typewriter-text/typewriter-text.tsx",
+                    "type": "registry:component"
+                }
+            ]
+        },
+        {
+            "name": "scroll-reveal",
+            "type": "registry:ui",
+            "title": "Scroll Reveal",
+            "description": "Elements that animate in as they enter the viewport.",
+            "dependencies": [
+                "framer-motion",
+                "lucide-react"
+            ],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "registry/kinetik/scroll-reveal/scroll-reveal.tsx",
+                    "type": "registry:component"
+                }
+            ]
+        },
+        {
+            "name": "confetti-button",
+            "type": "registry:ui",
+            "title": "Confetti Button",
+            "description": "Button with particle burst celebration effect on click.",
+            "dependencies": [
+                "framer-motion",
+                "lucide-react"
+            ],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "registry/kinetik/confetti-button/confetti-button.tsx",
+                    "type": "registry:component"
+                }
+            ]
+        }
+    ]
+}

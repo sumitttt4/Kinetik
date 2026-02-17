@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "infinite-scroll-columns",
+  "title": "Infinite Scroll Columns",
+  "description": "Opposing marquee columns for testimonials and visual loops.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/kinetik/infinite-scroll-columns/infinite-scroll-column.tsx",
+      "content": "'use client';\r\n\r\nimport { cn } from '@/lib/utils';\r\n\r\nconst testimonials = [\r\n  '“Kinetik made our app feel alive.”',\r\n  '“This is the closest web gets to native physics.”',\r\n  '“The copy-paste ergonomics are unreal.”',\r\n  '“Our conversion jumped after shipping fluid UI.”'\r\n];\r\n\r\nfunction Column({ reverse }: { reverse?: boolean }) {\r\n  const loop = [...testimonials, ...testimonials];\r\n\r\n  return (\r\n    <div className=\"relative h-44 overflow-hidden rounded-xl border border-slate-200 bg-white p-3\">\r\n      <div className={cn('kinetik-marquee space-y-2', reverse && 'kinetik-marquee-reverse')}>\r\n        {loop.map((quote, index) => (\r\n          <p key={`${quote}-${index}`} className=\"rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-xs text-slate-700\">\r\n            {quote}\r\n          </p>\r\n        ))}\r\n      </div>\r\n    </div>\r\n  );\r\n}\r\n\r\nexport function InfiniteScrollColumn() {\r\n  return (\r\n    <div className=\"grid grid-cols-2 gap-3\">\r\n      <Column />\r\n      <Column reverse />\r\n    </div>\r\n  );\r\n}\r\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:ui"
+}

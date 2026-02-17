@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "floating-toolbar",
+  "title": "Floating Toolbar",
+  "description": "Minimalist navigation pill with precise layout transitions.",
+  "dependencies": [
+    "framer-motion",
+    "lucide-react"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/kinetik/floating-toolbar/floating-toolbar.tsx",
+      "content": "'use client';\r\n\r\nimport { useState } from 'react';\r\nimport { motion } from 'framer-motion';\r\nimport { Home, Folder, Layers, Compass, Bell } from 'lucide-react';\r\nimport { cn } from '@/lib/utils';\r\n\r\nconst items = [\r\n  { id: 'opt1', icon: Home, label: 'Home' },\r\n  { id: 'opt2', icon: Folder, label: 'Projects' },\r\n  { id: 'opt3', icon: Layers, label: 'Stack' },\r\n  { id: 'opt4', icon: Compass, label: 'Explore' },\r\n  { id: 'opt5', icon: Bell, label: 'Notifications' },\r\n];\r\n\r\nexport function FloatingToolbar() {\r\n  const [active, setActive] = useState('opt1');\r\n  const [hovered, setHovered] = useState<string | null>(null);\r\n\r\n  return (\r\n    <div className=\"flex h-full w-full items-center justify-center bg-gray-50/50 p-8 dark:bg-transparent transition-colors duration-300\">\r\n      <div className=\"relative flex items-center gap-2 rounded-full border border-slate-200 bg-white/80 px-2 py-2 shadow-sm backdrop-blur-md dark:border-slate-800 dark:bg-slate-900/80\">\r\n        {items.map((item) => {\r\n          const isActive = active === item.id;\r\n          const isHovered = hovered === item.id;\r\n\r\n          return (\r\n            <button\r\n              key={item.id}\r\n              onClick={() => setActive(item.id)}\r\n              onMouseEnter={() => setHovered(item.id)}\r\n              onMouseLeave={() => setHovered(null)}\r\n              className={cn(\r\n                \"relative flex h-10 w-10 items-center justify-center rounded-full transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400\",\r\n                isActive ? \"text-slate-50 dark:text-slate-900\" : \"text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200\"\r\n              )}\r\n            >\r\n              {/* Active Background - Morphing Pill */}\r\n              {isActive && (\r\n                <motion.div\r\n                  layoutId=\"toolbar-active\"\r\n                  className=\"absolute inset-0 rounded-full bg-slate-900 dark:bg-slate-100\"\r\n                  transition={{\r\n                    type: \"spring\",\r\n                    stiffness: 300,\r\n                    damping: 30\r\n                  }}\r\n                />\r\n              )}\r\n\r\n              {/* Hover Background - Subtle scale */}\r\n              {isHovered && !isActive && (\r\n                <motion.div\r\n                  layoutId=\"toolbar-hover\"\r\n                  className=\"absolute inset-0 rounded-full bg-slate-100 dark:bg-slate-800\"\r\n                  initial={{ opacity: 0, scale: 0.9 }}\r\n                  animate={{ opacity: 1, scale: 1 }}\r\n                  exit={{ opacity: 0, scale: 0.9 }}\r\n                  transition={{ duration: 0.15 }}\r\n                />\r\n              )}\r\n\r\n              {/* Icon */}\r\n              <span className=\"relative z-10\">\r\n                 <item.icon className=\"h-5 w-5\" />\r\n              </span>\r\n              \r\n              {/* Tooltip (Optional, keeping it minimal as requested \"less animation\") */}\r\n            </button>\r\n          );\r\n        })}\r\n      </div>\r\n    </div>\r\n  );\r\n}\r\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:ui"
+}

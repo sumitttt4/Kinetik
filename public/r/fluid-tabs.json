@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "fluid-tabs",
+  "title": "Fluid Tabs",
+  "description": "Segmented control with spring-driven active background motion.",
+  "dependencies": [
+    "framer-motion"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/kinetik/fluid-tabs/fluid-tabs.tsx",
+      "content": "'use client';\r\n\r\nimport { motion, useReducedMotion } from 'framer-motion';\r\nimport { useState } from 'react';\r\nimport { cn } from '@/lib/utils';\r\n\r\nconst tabs = ['Preview', 'Code', 'Usage'];\r\n\r\nexport function FluidTabs() {\r\n  const [active, setActive] = useState('Preview');\r\n  const shouldReduceMotion = useReducedMotion();\r\n\r\n  function handleKeyDown(event: React.KeyboardEvent<HTMLDivElement>) {\r\n    const currentIndex = tabs.indexOf(active);\r\n    if (event.key === 'ArrowRight') {\r\n      setActive(tabs[(currentIndex + 1) % tabs.length]);\r\n    }\r\n    if (event.key === 'ArrowLeft') {\r\n      setActive(tabs[(currentIndex - 1 + tabs.length) % tabs.length]);\r\n    }\r\n  }\r\n\r\n  return (\r\n    <div role=\"tablist\" aria-label=\"Fluid tabs\" onKeyDown={handleKeyDown} className=\"mx-auto flex w-full max-w-sm rounded-full border border-border bg-muted/50 p-1\">\r\n      {tabs.map((tab) => (\r\n        <button\r\n          key={tab}\r\n          role=\"tab\"\r\n          aria-selected={active === tab}\r\n          tabIndex={active === tab ? 0 : -1}\r\n          type=\"button\"\r\n          onClick={() => setActive(tab)}\r\n          className={cn(\r\n            'relative z-10 flex-1 rounded-full px-3 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',\r\n            active === tab ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'\r\n          )}\r\n        >\r\n          {active === tab && (\r\n            <motion.span\r\n              layoutId=\"active-tab\"\r\n              className=\"absolute inset-0 -z-10 rounded-full bg-white shadow\"\r\n              transition={shouldReduceMotion ? { duration: 0 } : { type: 'spring', bounce: 0.25, duration: 0.45 }}\r\n              initial={shouldReduceMotion ? false : { scaleX: 0.85 }}\r\n              animate={shouldReduceMotion ? { scaleX: 1 } : { scaleX: 1 }}\r\n            />\r\n          )}\r\n          {tab}\r\n        </button>\r\n      ))}\r\n    </div>\r\n  );\r\n}\r\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:ui"
+}

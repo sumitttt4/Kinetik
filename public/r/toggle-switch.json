@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toggle-switch",
+  "title": "Toggle Switch",
+  "description": "Spring-animated toggle with icon morph transitions.",
+  "dependencies": [
+    "framer-motion",
+    "lucide-react"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/kinetik/toggle-switch/toggle-switch.tsx",
+      "content": "'use client';\r\n\r\nimport { useState } from 'react';\r\nimport { motion, useReducedMotion } from 'framer-motion';\r\nimport { cn } from '@/lib/utils';\r\nimport { Moon, Sun } from 'lucide-react';\r\n\r\nexport function ToggleSwitch() {\r\n  const [on, setOn] = useState(false);\r\n  const shouldReduceMotion = useReducedMotion();\r\n\r\n  const spring = shouldReduceMotion\r\n    ? { duration: 0 }\r\n    : { type: 'spring' as const, stiffness: 500, damping: 30 };\r\n\r\n  return (\r\n    <div className=\"flex items-center gap-6\">\r\n      {/* Minimal toggle */}\r\n      <button\r\n        type=\"button\"\r\n        role=\"switch\"\r\n        aria-checked={on}\r\n        onClick={() => setOn(!on)}\r\n        className={cn(\r\n          'relative flex h-8 w-14 cursor-pointer items-center rounded-full p-1 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary',\r\n          on ? 'bg-primary' : 'bg-slate-300 dark:bg-slate-700'\r\n        )}\r\n      >\r\n        <motion.span\r\n          layout\r\n          transition={spring}\r\n          className={cn(\r\n            'flex h-6 w-6 items-center justify-center rounded-full bg-white shadow-md',\r\n            on ? '' : ''\r\n          )}\r\n        >\r\n          <motion.span\r\n            initial={false}\r\n            animate={{ rotate: on ? 180 : 0, scale: on ? 1 : 0.85 }}\r\n            transition={spring}\r\n          >\r\n            {on ? (\r\n              <Moon className=\"h-3.5 w-3.5 text-primary\" />\r\n            ) : (\r\n              <Sun className=\"h-3.5 w-3.5 text-amber-500\" />\r\n            )}\r\n          </motion.span>\r\n        </motion.span>\r\n      </button>\r\n\r\n      {/* Label */}\r\n      <span className=\"text-sm font-medium text-muted-foreground\">\r\n        {on ? 'Dark mode' : 'Light mode'}\r\n      </span>\r\n    </div>\r\n  );\r\n}\r\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:ui"
+}

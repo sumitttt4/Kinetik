@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "shimmer-text",
+  "title": "Shimmer Text",
+  "description": "Text with a sweeping gradient shimmer effect.",
+  "dependencies": [
+    "framer-motion"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/kinetik/shimmer-text/shimmer-text.tsx",
+      "content": "'use client';\r\n\r\nimport { useReducedMotion } from 'framer-motion';\r\nimport { cn } from '@/lib/utils';\r\n\r\nexport function ShimmerText() {\r\n  const shouldReduceMotion = useReducedMotion();\r\n\r\n  return (\r\n    <div className=\"flex flex-col items-center gap-4\">\r\n      <h3\r\n        className={cn(\r\n          'bg-clip-text text-2xl font-bold tracking-tight text-transparent',\r\n          'bg-[length:200%_100%] bg-gradient-to-r from-slate-800 via-slate-400 to-slate-800 dark:from-slate-200 dark:via-slate-500 dark:to-slate-200',\r\n          !shouldReduceMotion && 'animate-[shimmer_3s_ease-in-out_infinite]'\r\n        )}\r\n      >\r\n        Premium Quality\r\n      </h3>\r\n      <p\r\n        className={cn(\r\n          'bg-clip-text text-sm font-semibold tracking-widest uppercase text-transparent',\r\n          'bg-[length:200%_100%] bg-gradient-to-r from-blue-600 via-sky-300 to-blue-600 dark:from-blue-400 dark:via-sky-200 dark:to-blue-400',\r\n          !shouldReduceMotion && 'animate-[shimmer_2.5s_ease-in-out_infinite_0.3s]'\r\n        )}\r\n      >\r\n        Loading experience\r\n      </p>\r\n    </div>\r\n  );\r\n}\r\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:ui"
+}

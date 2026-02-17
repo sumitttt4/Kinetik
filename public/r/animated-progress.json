@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "animated-progress",
+  "title": "Animated Progress",
+  "description": "Spring-driven progress bars that animate to target values.",
+  "dependencies": [
+    "framer-motion"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/kinetik/animated-progress/animated-progress.tsx",
+      "content": "'use client';\r\n\r\nimport { useState, useEffect } from 'react';\r\nimport { motion, useSpring, useTransform, useReducedMotion } from 'framer-motion';\r\nimport { cn } from '@/lib/utils';\r\n\r\nfunction ProgressBar({ value, label, color }: { value: number; label: string; color: string }) {\r\n  const shouldReduceMotion = useReducedMotion();\r\n  const spring = useSpring(0, { stiffness: 60, damping: 20 });\r\n  const width = useTransform(spring, (v) => `${v}%`);\r\n  const display = useTransform(spring, (v) => `${Math.round(v)}%`);\r\n\r\n  useEffect(() => {\r\n    spring.set(shouldReduceMotion ? value : value);\r\n  }, [spring, value, shouldReduceMotion]);\r\n\r\n  return (\r\n    <div className=\"space-y-1.5\">\r\n      <div className=\"flex items-center justify-between\">\r\n        <span className=\"text-xs font-medium text-foreground\">{label}</span>\r\n        <motion.span className=\"text-xs font-semibold tabular-nums text-muted-foreground\">\r\n          {display}\r\n        </motion.span>\r\n      </div>\r\n      <div className=\"h-2 overflow-hidden rounded-full bg-muted\">\r\n        <motion.div\r\n          style={{ width }}\r\n          className={cn('h-full rounded-full', color)}\r\n        />\r\n      </div>\r\n    </div>\r\n  );\r\n}\r\n\r\nexport function AnimatedProgress() {\r\n  const [values, setValues] = useState([72, 45, 89]);\r\n\r\n  const randomize = () => {\r\n    setValues([\r\n      Math.floor(Math.random() * 80) + 20,\r\n      Math.floor(Math.random() * 80) + 20,\r\n      Math.floor(Math.random() * 80) + 20,\r\n    ]);\r\n  };\r\n\r\n  return (\r\n    <div className=\"w-full max-w-xs space-y-4\">\r\n      <ProgressBar value={values[0]} label=\"Design\" color=\"bg-blue-500\" />\r\n      <ProgressBar value={values[1]} label=\"Development\" color=\"bg-indigo-500\" />\r\n      <ProgressBar value={values[2]} label=\"Testing\" color=\"bg-emerald-500\" />\r\n      <button\r\n        type=\"button\"\r\n        onClick={randomize}\r\n        className=\"w-full rounded-lg border border-border bg-background py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground\"\r\n      >\r\n        Randomize\r\n      </button>\r\n    </div>\r\n  );\r\n}\r\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:ui"
+}

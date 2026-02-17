@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "scroll-reveal",
+  "title": "Scroll Reveal",
+  "description": "Elements that animate in as they enter the viewport.",
+  "dependencies": [
+    "framer-motion",
+    "lucide-react"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/kinetik/scroll-reveal/scroll-reveal.tsx",
+      "content": "'use client';\r\n\r\nimport { motion, useReducedMotion } from 'framer-motion';\r\nimport { Eye, Sparkles, Zap } from 'lucide-react';\r\n\r\nconst cards = [\r\n  { icon: Eye, label: 'Observe', desc: 'Detects viewport entry' },\r\n  { icon: Sparkles, label: 'Animate', desc: 'Spring-based reveal' },\r\n  { icon: Zap, label: 'Perform', desc: 'GPU-accelerated' },\r\n];\r\n\r\nexport function ScrollReveal() {\r\n  const shouldReduceMotion = useReducedMotion();\r\n\r\n  return (\r\n    <div className=\"flex w-full max-w-sm flex-col items-center gap-3\">\r\n      {cards.map((card, i) => (\r\n        <motion.div\r\n          key={card.label}\r\n          initial={shouldReduceMotion ? {} : { opacity: 0, y: 20, filter: 'blur(6px)' }}\r\n          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}\r\n          viewport={{ once: true, margin: '-20px' }}\r\n          transition={{\r\n            type: 'spring',\r\n            stiffness: 200,\r\n            damping: 20,\r\n            delay: shouldReduceMotion ? 0 : i * 0.12,\r\n          }}\r\n          className=\"flex w-full items-center gap-4 rounded-xl border border-border bg-card px-4 py-3 shadow-sm\"\r\n        >\r\n          <div className=\"flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary\">\r\n            <card.icon className=\"h-4.5 w-4.5\" />\r\n          </div>\r\n          <div>\r\n            <p className=\"text-sm font-semibold text-foreground\">{card.label}</p>\r\n            <p className=\"text-[11px] text-muted-foreground\">{card.desc}</p>\r\n          </div>\r\n        </motion.div>\r\n      ))}\r\n    </div>\r\n  );\r\n}\r\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:ui"
+}

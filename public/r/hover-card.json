@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "hover-card",
+  "title": "Hover Card",
+  "description": "Spring-animated popover card that appears on hover.",
+  "dependencies": [
+    "framer-motion"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/kinetik/hover-card/hover-card.tsx",
+      "content": "'use client';\r\n\r\nimport { useState } from 'react';\r\nimport { motion, AnimatePresence, useReducedMotion } from 'framer-motion';\r\nimport { cn } from '@/lib/utils';\r\n\r\nconst users = [\r\n  { name: 'Alex Chen', role: 'Design Engineer', avatar: 'AC' },\r\n  { name: 'Sara Kim', role: 'Frontend Lead', avatar: 'SK' },\r\n  { name: 'Max Hall', role: 'Motion Designer', avatar: 'MH' },\r\n];\r\n\r\nexport function HoverCard() {\r\n  const [active, setActive] = useState<number | null>(null);\r\n  const shouldReduceMotion = useReducedMotion();\r\n\r\n  return (\r\n    <div className=\"flex items-center gap-3\">\r\n      {users.map((user, i) => (\r\n        <div\r\n          key={user.name}\r\n          className=\"relative\"\r\n          onMouseEnter={() => setActive(i)}\r\n          onMouseLeave={() => setActive(null)}\r\n          onFocus={() => setActive(i)}\r\n          onBlur={() => setActive(null)}\r\n        >\r\n          <button\r\n            type=\"button\"\r\n            className={cn(\r\n              'flex h-10 w-10 items-center justify-center rounded-full border-2 text-xs font-bold transition-all',\r\n              active === i\r\n                ? 'border-primary bg-primary text-primary-foreground scale-110'\r\n                : 'border-border bg-card text-muted-foreground hover:border-primary/40'\r\n            )}\r\n          >\r\n            {user.avatar}\r\n          </button>\r\n\r\n          <AnimatePresence>\r\n            {active === i && (\r\n              <motion.div\r\n                initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 6, scale: 0.96 }}\r\n                animate={{ opacity: 1, y: 0, scale: 1 }}\r\n                exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 4, scale: 0.97 }}\r\n                transition={{ type: 'spring', stiffness: 400, damping: 25 }}\r\n                className=\"absolute left-1/2 top-full z-10 mt-2 w-44 -translate-x-1/2 rounded-xl border border-border bg-card p-3 shadow-xl\"\r\n              >\r\n                <div className=\"flex items-center gap-2.5\">\r\n                  <div className=\"flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-xs font-bold text-primary\">\r\n                    {user.avatar}\r\n                  </div>\r\n                  <div>\r\n                    <p className=\"text-xs font-semibold text-foreground\">{user.name}</p>\r\n                    <p className=\"text-[10px] text-muted-foreground\">{user.role}</p>\r\n                  </div>\r\n                </div>\r\n                {/* Arrow */}\r\n                <div className=\"absolute -top-1 left-1/2 h-2 w-2 -translate-x-1/2 rotate-45 border-l border-t border-border bg-card\" />\r\n              </motion.div>\r\n            )}\r\n          </AnimatePresence>\r\n        </div>\r\n      ))}\r\n    </div>\r\n  );\r\n}\r\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:ui"
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "elastic-drawer",
+  "title": "Elastic Drawer",
+  "description": "Spring-powered expandable drawer with staggered items.",
+  "dependencies": [
+    "framer-motion",
+    "lucide-react"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/kinetik/elastic-drawer/elastic-drawer.tsx",
+      "content": "'use client';\r\n\r\nimport { useState } from 'react';\r\nimport { motion, AnimatePresence, useReducedMotion } from 'framer-motion';\r\nimport { ChevronUp, Settings, Palette, Volume2 } from 'lucide-react';\r\nimport { cn } from '@/lib/utils';\r\n\r\nconst kinetikSpring = {\r\n  type: 'spring' as const,\r\n  stiffness: 300,\r\n  damping: 30,\r\n  mass: 0.8,\r\n};\r\n\r\nconst options = [\r\n  { icon: Settings, label: 'Settings' },\r\n  { icon: Palette, label: 'Theme' },\r\n  { icon: Volume2, label: 'Sound' },\r\n];\r\n\r\nexport function ElasticDrawer() {\r\n  const [open, setOpen] = useState(false);\r\n  const shouldReduceMotion = useReducedMotion();\r\n\r\n  const transition = shouldReduceMotion ? { duration: 0 } : kinetikSpring;\r\n\r\n  return (\r\n    <div className=\"flex flex-col items-center gap-2\">\r\n      {/* Drawer content */}\r\n      <AnimatePresence>\r\n        {open && (\r\n          <motion.div\r\n            initial={{ height: 0, opacity: 0, filter: 'blur(4px)' }}\r\n            animate={{ height: 'auto', opacity: 1, filter: 'blur(0px)' }}\r\n            exit={{ height: 0, opacity: 0, filter: 'blur(4px)' }}\r\n            transition={transition}\r\n            className=\"overflow-hidden\"\r\n          >\r\n            <div className=\"flex flex-col gap-1.5 pb-2\">\r\n              {options.map((opt, i) => (\r\n                <motion.button\r\n                  key={opt.label}\r\n                  type=\"button\"\r\n                  initial={shouldReduceMotion ? false : { opacity: 0, y: 8 }}\r\n                  animate={{ opacity: 1, y: 0 }}\r\n                  transition={{\r\n                    ...transition,\r\n                    delay: shouldReduceMotion ? 0 : i * 0.06,\r\n                  }}\r\n                  className=\"flex w-48 items-center gap-3 rounded-xl border border-border bg-background px-4 py-2.5 text-sm font-medium text-foreground shadow-sm transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary\"\r\n                >\r\n                  <opt.icon className=\"h-4 w-4 text-muted-foreground\" />\r\n                  {opt.label}\r\n                </motion.button>\r\n              ))}\r\n            </div>\r\n          </motion.div>\r\n        )}\r\n      </AnimatePresence>\r\n\r\n      {/* Toggle */}\r\n      <motion.button\r\n        type=\"button\"\r\n        whileTap={shouldReduceMotion ? {} : { scale: 0.95 }}\r\n        onClick={() => setOpen(!open)}\r\n        className={cn(\r\n          'flex items-center gap-2 rounded-full border border-border bg-background px-5 py-2.5 text-sm font-semibold text-foreground shadow-sm transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary',\r\n        )}\r\n      >\r\n        <motion.span\r\n          animate={{ rotate: open ? 180 : 0 }}\r\n          transition={transition}\r\n          className=\"inline-flex\"\r\n        >\r\n          <ChevronUp className=\"h-4 w-4\" />\r\n        </motion.span>\r\n        {open ? 'Close' : 'Quick Actions'}\r\n      </motion.button>\r\n    </div>\r\n  );\r\n}\r\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:ui"
+}

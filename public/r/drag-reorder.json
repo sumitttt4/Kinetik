@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "drag-reorder",
+  "title": "Drag Reorder",
+  "description": "Sortable list with drag-and-drop layout animations.",
+  "dependencies": [
+    "framer-motion",
+    "lucide-react"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/kinetik/drag-reorder/drag-reorder.tsx",
+      "content": "'use client';\r\n\r\nimport { useState } from 'react';\r\nimport { Reorder, useReducedMotion } from 'framer-motion';\r\nimport { GripVertical } from 'lucide-react';\r\n\r\nconst initial = [\r\n  { id: '1', label: 'Design tokens' },\r\n  { id: '2', label: 'Spring config' },\r\n  { id: '3', label: 'Layout system' },\r\n  { id: '4', label: 'Accessibility' },\r\n];\r\n\r\nexport function DragReorder() {\r\n  const [items, setItems] = useState(initial);\r\n  const shouldReduceMotion = useReducedMotion();\r\n\r\n  return (\r\n    <div className=\"w-full max-w-xs\">\r\n      <Reorder.Group\r\n        axis=\"y\"\r\n        values={items}\r\n        onReorder={setItems}\r\n        className=\"space-y-2\"\r\n      >\r\n        {items.map((item, i) => (\r\n          <Reorder.Item\r\n            key={item.id}\r\n            value={item}\r\n            whileDrag={shouldReduceMotion ? {} : { scale: 1.03, boxShadow: '0 8px 25px -8px rgba(0,0,0,0.2)' }}\r\n            transition={{ type: 'spring', stiffness: 300, damping: 25 }}\r\n            className=\"flex cursor-grab items-center gap-3 rounded-xl border border-border bg-card px-3.5 py-2.5 active:cursor-grabbing\"\r\n          >\r\n            <GripVertical className=\"h-4 w-4 shrink-0 text-muted-foreground/50\" />\r\n            <span className=\"flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-primary/10 text-[10px] font-bold text-primary\">\r\n              {i + 1}\r\n            </span>\r\n            <span className=\"flex-1 text-sm font-medium text-foreground\">{item.label}</span>\r\n          </Reorder.Item>\r\n        ))}\r\n      </Reorder.Group>\r\n      <p className=\"mt-3 text-center text-[10px] text-muted-foreground\">\r\n        Drag items to reorder\r\n      </p>\r\n    </div>\r\n  );\r\n}\r\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:ui"
+}

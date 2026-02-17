@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "ripple-button",
+  "title": "Ripple Button",
+  "description": "Click-reactive button with expanding ripple waves.",
+  "dependencies": [
+    "framer-motion",
+    "lucide-react"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/kinetik/ripple-button/ripple-button.tsx",
+      "content": "'use client';\r\n\r\nimport { useState, useCallback } from 'react';\r\nimport { motion, AnimatePresence, useReducedMotion } from 'framer-motion';\r\nimport { Zap } from 'lucide-react';\r\n\r\ntype Ripple = { id: number; x: number; y: number };\r\n\r\nexport function RippleButton() {\r\n  const [ripples, setRipples] = useState<Ripple[]>([]);\r\n  const shouldReduceMotion = useReducedMotion();\r\n\r\n  const handleClick = useCallback(\r\n    (e: React.MouseEvent<HTMLButtonElement>) => {\r\n      if (shouldReduceMotion) return;\r\n      const rect = e.currentTarget.getBoundingClientRect();\r\n      const x = e.clientX - rect.left;\r\n      const y = e.clientY - rect.top;\r\n      const id = Date.now();\r\n      setRipples((prev) => [...prev, { id, x, y }]);\r\n      setTimeout(() => {\r\n        setRipples((prev) => prev.filter((r) => r.id !== id));\r\n      }, 800);\r\n    },\r\n    [shouldReduceMotion]\r\n  );\r\n\r\n  return (\r\n    <button\r\n      type=\"button\"\r\n      onClick={handleClick}\r\n      className=\"relative overflow-hidden rounded-xl bg-gradient-to-r from-[#1e3a8a] to-[#3b82f6] px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-blue-900/25 transition-shadow hover:shadow-xl hover:shadow-blue-900/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400\"\r\n    >\r\n      <span className=\"relative z-10 inline-flex items-center gap-2\">\r\n        <Zap className=\"h-4 w-4\" />\r\n        Click Me\r\n      </span>\r\n      <AnimatePresence>\r\n        {ripples.map((ripple) => (\r\n          <motion.span\r\n            key={ripple.id}\r\n            initial={{ width: 0, height: 0, opacity: 0.5 }}\r\n            animate={{ width: 300, height: 300, opacity: 0 }}\r\n            exit={{ opacity: 0 }}\r\n            transition={{ duration: 0.7, ease: 'easeOut' }}\r\n            className=\"pointer-events-none absolute rounded-full bg-white/30\"\r\n            style={{\r\n              left: ripple.x,\r\n              top: ripple.y,\r\n              transform: 'translate(-50%, -50%)',\r\n            }}\r\n          />\r\n        ))}\r\n      </AnimatePresence>\r\n    </button>\r\n  );\r\n}\r\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:ui"
+}

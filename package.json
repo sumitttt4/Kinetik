@@ -30,7 +30,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "registry:build": "shadcn build"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.4",
@@ -53,6 +54,7 @@
     "eslint": "^8.57.1",
     "eslint-config-next": "^14.2.26",
     "postcss": "^8.5.1",
+    "shadcn": "^3.8.5",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.7.3"
   }
