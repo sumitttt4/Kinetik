@@ -5,21 +5,21 @@
 <h1 align="center">Kinetik</h1>
 
 <p align="center">
-  A copy-paste registry of physically modeled UI components for React.<br/>
-  Spring physics · Framer Motion · Tailwind CSS · Strict TypeScript
+  A copy-paste registry of production UI patterns and physically modeled components for React.<br/>
+  Spring physics · Motion 12 · Tailwind CSS · Next.js 15 · TypeScript
 </p>
 
 <p align="center">
-  <a href="https://kinetik.vercel.app">Live Demo</a> ·
-  <a href="#components">Components</a> ·
+  <a href="https://kinetik-kohl.vercel.app">Live Demo</a> ·
+  <a href="#patterns">Patterns</a> ·
   <a href="#getting-started">Get Started</a> ·
   <a href="CONTRIBUTING.md">Contributing</a>
 </p>
 
 <p align="center">
-  <a href="https://github.com/sumitttt4/Kinetik/stargazers"><img src="https://img.shields.io/github/stars/sumitttt4/Kinetik?style=flat&color=3b82f6" alt="Stars" /></a>
-  <a href="https://github.com/sumitttt4/Kinetik/blob/main/LICENSE"><img src="https://img.shields.io/github/license/sumitttt4/Kinetik?color=3b82f6" alt="License" /></a>
-  <a href="https://github.com/sumitttt4/Kinetik/issues"><img src="https://img.shields.io/github/issues/sumitttt4/Kinetik?color=3b82f6" alt="Issues" /></a>
+  <a href="https://github.com/sumitttt4/Kinetik/stargazers"><img src="https://img.shields.io/github/stars/sumitttt4/Kinetik?style=flat&color=FF6B35" alt="Stars" /></a>
+  <a href="https://github.com/sumitttt4/Kinetik/blob/main/LICENSE"><img src="https://img.shields.io/github/license/sumitttt4/Kinetik?color=FF6B35" alt="License" /></a>
+  <a href="https://github.com/sumitttt4/Kinetik/issues"><img src="https://img.shields.io/github/issues/sumitttt4/Kinetik?color=FF6B35" alt="Issues" /></a>
   <a href="https://github.com/sumitttt4/Kinetik/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/sumitttt4/Kinetik/ci.yml?branch=main&label=CI" alt="CI" /></a>
 </p>
 
@@ -27,45 +27,52 @@
 
 ## Why Kinetik?
 
-Most component libraries give you static boxes with hover states. Kinetik gives you **living interfaces** — components driven by real spring physics that feel like native apps.
+Most component libraries give you static boxes with basic hover states. Kinetik gives you **engineered UI patterns** — component systems driven by real spring physics, hardware acceleration, and Emil Kowalski's motion craft principles.
 
-- **Physics-first** — Every animation uses spring dynamics (`stiffness`, `damping`, `mass`), not arbitrary durations
-- **Copy-paste workflow** — No `npm install kinetik`. Open the registry, copy one file, ship
-- **Strict TypeScript** — Full type safety with zero `any` escapes
-- **Accessible** — `prefers-reduced-motion` respected, keyboard navigable, proper ARIA
-- **Dark mode** — Every component works flawlessly in both light and dark themes
-- **Tiny footprint** — Each component is a single self-contained file
+- **Physics-first Motion** — Driven by spring dynamics (`stiffness`, `damping`), custom cubic-bezier curves, and sub-300ms responsive timing
+- **Copy-paste Workflow** — Zero dependency lock-in. Browse patterns, copy component source, drop into your codebase and ship
+- **shadcn/ui Compatible** — Native support for `npx shadcn@latest` registry commands
+- **Strict TypeScript** — Clean typing across Next.js 15 App Router dynamic routes
+- **Accessible & Gated** — `prefers-reduced-motion` honored, touch device hover gating, and WCAG AA contrast compliance
+- **Dark Mode Native** — Designed to look stunning in both light and dark themes
+
+---
 
 ## Tech Stack
 
 | Layer | Technology |
 | --- | --- |
-| Framework | [Next.js 14](https://nextjs.org) (App Router) |
-| Animation | [Framer Motion 11](https://www.framer.com/motion/) |
-| Styling | [Tailwind CSS 3](https://tailwindcss.com) |
+| Framework | [Next.js 15](https://nextjs.org) (App Router) |
+| React | [React 19](https://react.dev) |
+| Motion | [Motion 12](https://motion.dev) (`motion/react`) |
+| Styling | [Tailwind CSS](https://tailwindcss.com) + `tailwindcss-animate` |
 | Icons | [Lucide React](https://lucide.dev) |
 | Theming | [next-themes](https://github.com/pacocoursey/next-themes) |
-| Language | TypeScript 5 (strict mode) |
-| Package Manager | pnpm |
+| Language | TypeScript 5 (Strict Mode) |
+| Package Manager | `npm` |
 
-## Components
+---
 
-| Component | Category | Description |
+## Pattern Registry
+
+| Pattern | Category | Description |
 | --- | --- | --- |
-| **Dynamic Island** | Hero | Fluid expansion from a compact pill into contextual status content |
-| **Fluid Tabs** | Input | Segmented control with spring-driven active background motion |
-| **Morphing Dialog** | Hero | Shared-element transition from card preview to expanded modal |
-| **Magnet Button** | Input | Pointer-reactive button with subtle magnetic attraction |
-| **Infinite Scroll Columns** | Motion | Opposing marquee columns for testimonials and visual loops |
-| **Floating Toolbar** | Motion | Minimalist navigation pill with layout transitions |
-| **Neumorphic Newsletter** | Input | Soft-UI subscription card with recessed inputs and spring states |
+| **Enterprise Hero** | Heroes | Production hero section with status badge, headline hierarchy, CTA buttons, grid background, and corner L-brackets |
+| **Technical Feature Grid** | Sections | 3-column pipeline feature section with monospaced step counters and corner crosshair accents |
+| **API Documentation Hero** | Heroes | Code-first hero with live endpoint preview, response status badge, and dot matrix coordinate system |
+| **Solace UI Footer** | Footers | Modern animated footer with brand mark, interactive pill navigation, integrated SocialCloud icon bar, and diagonal hatch divider |
+| **Editorial Pricing** | Sections | Ruled notebook paper pricing layout with editorial typography and section dividers |
+| **Dashboard Header** | Data Display | Blueprint grid telemetry header with live status indicators and latency stat cards |
+| **Social Proof Wall** | Social Proof | Customer story logo wall with framing accent blocks and monospaced metadata |
+
+---
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js 18+
-- pnpm 9+ (recommended) or npm/yarn
+- Node.js 20+
+- npm 10+
 
 ### Installation
 
@@ -75,156 +82,80 @@ git clone https://github.com/sumitttt4/Kinetik.git
 cd Kinetik
 
 # Install dependencies
-pnpm install
+npm install
 
-# Start the development server
-pnpm dev
+# Start the local development server
+npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to see the showcase.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-### Using a Component
+---
 
-Kinetik is a **registry**, not an npm package. To use a component:
+## Using shadcn CLI
 
-1. Browse the [component registry](https://kinetik.vercel.app/registry)
-2. Copy the source file into your project (e.g. `components/dynamic-island.tsx`)
-3. Install peer dependencies listed on the component page
-4. Import and use:
+Kinetik components are compatible with the `shadcn` CLI:
 
-```tsx
-import { DynamicIsland } from '@/components/dynamic-island';
-
-export default function Page() {
-  return <DynamicIsland />;
-}
+```bash
+# Add Solace UI components directly via shadcn CLI
+npx shadcn@latest add @solaceui/hero-section-1
+npx shadcn@latest add @solaceui/footer-section-1
 ```
 
-### Shared Utilities
-
-Components use a shared `cn()` utility and spring config:
-
-```ts
-// lib/utils.ts
-import { clsx, type ClassValue } from 'clsx';
-import { twMerge } from 'tailwind-merge';
-
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
-```
-
-```ts
-// lib/motion.ts
-export const kinetikSpring = {
-  type: 'spring',
-  stiffness: 300,
-  damping: 30,
-  mass: 0.8,
-} as const;
-```
+---
 
 ## Project Structure
 
 ```
-├── app/
-│   ├── components/       # All UI components (one file each)
-│   ├── registry/         # Registry browse + detail pages
-│   ├── globals.css       # Design tokens (CSS variables)
-│   ├── layout.tsx        # Root layout with ThemeProvider
-│   ├── page.tsx          # Landing page showcase
-│   └── not-found.tsx     # Custom 404
-├── components/           # Shared providers (theme-provider, mode-toggle)
-├── .github/              # Issue templates, CI, CODEOWNERS, funding
-├── lib/
-│   ├── motion.ts         # Global spring physics config
-│   ├── registry.ts       # Component metadata registry
-│   └── utils.ts          # cn() helper
-├── public/               # Static assets
-├── tailwind.config.ts    # Design system tokens
+├── app/                      # Next.js 15 App Router
+│   ├── patterns/             # Pattern catalog & customizer playground
+│   │   ├── [id]/             # Dynamic pattern detail customizer
+│   │   └── page.tsx          # Pattern explorer grid
+│   ├── settings/             # User preferences & saved favorites
+│   ├── globals.css           # Design system CSS tokens & theme variables
+│   ├── layout.tsx            # Root layout with ThemeProvider
+│   └── page.tsx              # Kinetik landing showcase
+├── components/               # High-craft React & Motion components
+│   ├── layout/               # Header, navigation, and structure
+│   ├── patterns/             # Live pattern renderer system
+│   ├── ui/                   # Core primitives (Button, Card, Input)
+│   ├── animated-group.tsx    # Staggered entry animation container
+│   ├── circular-gallery.tsx  # WebGL circular 3D carousel
+│   ├── footer-section-1.tsx  # Solace UI animated footer
+│   ├── hero-section-1.tsx    # Solace UI hero section
+│   ├── social-cloud.tsx      # Interactive social media icon cloud
+│   └── text-effect.tsx       # Kinetic typography text reveal engine
+├── lib/                      # Pattern store, utilities, and helper functions
+│   ├── store.ts              # Pattern definitions & local favorites persistence
+│   └── utils.ts              # cn() Tailwind class merger
+├── .github/                  # GitHub Actions CI workflow & health guidelines
+├── public/                   # Static vectors, logos & registry manifests
 └── package.json
 ```
 
-## Design System
-
-Kinetik uses a carefully tuned design language:
-
-| Token | Light | Dark |
-| --- | --- | --- |
-| Background | `slate-50` | `#070d22` (Deep Navy) |
-| Foreground | `slate-900` | `slate-50` |
-| Primary | `#3b82f6` (Brand Blue) | `#3b82f6` |
-| Border | `slate-200` | `white/10` |
-
-**Spring Physics** — All components share a global spring config:
-- `stiffness: 300` — Snappy response
-- `damping: 30` — Controlled deceleration
-- `mass: 0.8` — Subtle perceived weight
+---
 
 ## Scripts
 
 | Command | Description |
 | --- | --- |
-| `pnpm dev` | Start development server |
-| `pnpm build` | Production build |
-| `pnpm start` | Serve production build |
-| `pnpm lint` | Run ESLint |
+| `npm run dev` | Start development server |
+| `npm run build` | Build optimized production bundle |
+| `npm start` | Serve production build |
+| `npm run lint` | Run ESLint check |
+
+---
 
 ## Contributing
 
-We welcome contributions! Please read our [Contributing Guide](CONTRIBUTING.md) before submitting a PR.
+Contributions are welcome! Please review our [Contributing Guide](CONTRIBUTING.md) and [Code of Conduct](CODE_OF_CONDUCT.md).
 
-- [Code of Conduct](CODE_OF_CONDUCT.md)
 - [Security Policy](SECURITY.md)
 - [Support](SUPPORT.md)
 - [Governance](GOVERNANCE.md)
 
-## Open Source Health
-
-This repository includes key community and governance files expected by serious OSS programs:
-
-- `README`, `LICENSE`, `CONTRIBUTING`, `CODE_OF_CONDUCT`, `SECURITY`, `CHANGELOG`
-- Issue templates + pull request template
-- CI workflow (lint + build on push/PR)
-- CODEOWNERS + funding configuration
-
-## Deployment
-
-Kinetik is built for Vercel. Deploy with one click:
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fsumitttt4%2FKinetik)
-
-Or deploy manually:
-
-```bash
-pnpm build
-pnpm start
-```
-
-## Roadmap
-
-- [ ] CLI tool for component installation (`npx kinetik add dynamic-island`)
-- [ ] Component playground with live prop editing
-- [ ] Motion presets library (bounce, elastic, inertia)
-- [ ] Storybook integration
-- [ ] Automated visual regression tests
-- [ ] Component performance benchmarks
-- [ ] Vue/Svelte ports
-
-## Sponsors
-
-If Kinetik helps you build better interfaces, consider supporting the project:
-
-<a href="https://buymeacoffee.com/sumitsharmq">
-  <img src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black" alt="Buy Me a Coffee" />
-</a>
+---
 
 ## License
 
 [MIT](LICENSE) © Sumit Sharma
-
----
-
-<p align="center">
-  Built with spring physics and shipped on <a href="https://vercel.com">Vercel</a>.
-</p>

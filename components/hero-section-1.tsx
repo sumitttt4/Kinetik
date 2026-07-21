@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { Button } from "@/app/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { TextEffect } from "@/components/text-effect";
 import { AnimatedGroup } from "@/components/animated-group";
 import CircularGallery from "@/components/circular-gallery";
