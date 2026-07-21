@@ -20,24 +20,6 @@ const config = {
     },
     extend: {
       colors: {
-        brand: {
-          primary: '#1e3a8a',
-          accent: '#1e3a8a',
-          background: '#FFFFFF',
-          surface: '#F1F5F9',
-          text: '#0F172A',
-          muted: '#64748B',
-          border: '#E2E8F0',
-        },
-        dark: {
-          primary: '#1e3a8a',
-          accent: '#1e3a8a',
-          background: '#020617',
-          surface: '#1E293B',
-          text: '#F8FAFC',
-          muted: '#94A3B8',
-          border: '#1E293B',
-        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -73,11 +55,9 @@ const config = {
         },
       },
       fontFamily: {
-        heading: ["var(--font-plus-jakarta)", "system-ui", "sans-serif"],
-        display: ["var(--font-plus-jakarta)", "system-ui", "sans-serif"],
-        body: ["var(--font-inter)", "system-ui", "sans-serif"],
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
-        mono: ["var(--font-ibm-mono)", "monospace"],
+        body: ["var(--font-inter)", "system-ui", "sans-serif"],
+        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
       },
       borderRadius: {
         lg: "var(--radius)",

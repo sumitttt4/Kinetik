@@ -4,96 +4,69 @@
 
 @layer base {
   :root {
-    /* LIGHT MODE */
-    --background: 0 0% 100%;
-    /* #FFFFFF */
-    --foreground: 222 47% 11%;
-    /* #0F172A */
+    /* LIGHT MODE — Pure White */
+    --background: 0 0% 100%;      /* #FFFFFF */
+    --foreground: 0 0% 9%;        /* #171717 */
 
-    --card: 0 0% 100%;
-    /* #FFFFFF */
-    --card-foreground: 222 47% 11%;
-    /* #0F172A */
+    --card: 0 0% 100%;           /* #FFFFFF */
+    --card-foreground: 0 0% 9%;
 
     --popover: 0 0% 100%;
-    /* #FFFFFF */
-    --popover-foreground: 222 47% 11%;
-    /* #0F172A */
+    --popover-foreground: 0 0% 9%;
 
-    --primary: 224 64% 33%;
-    /* #1e3a8a */
+    --primary: 16 100% 60%;       /* #FF6B35 (Burnt Orange) */
     --primary-foreground: 0 0% 100%;
-    /* White text on primary */
 
-    --secondary: 210 40% 96%;
-    /* #F1F5F9 (Surface) */
-    --secondary-foreground: 222 47% 11%;
-    /* #0F172A */
+    --secondary: 30 6% 95%;       /* #F5F5F4 (Neutral Stone Gray) */
+    --secondary-foreground: 0 0% 9%;
 
-    --muted: 210 40% 96%;
-    /* #F1F5F9 (Background for muted elements) */
-    --muted-foreground: 215 16% 47%;
-    /* #64748B (Text for muted elements) */
+    --muted: 30 6% 95%;
+    --muted-foreground: 24 5% 45%; /* #78716C */
 
-    --accent: 224 64% 33%;
-    /* #1e3a8a */
-    --accent-foreground: 0 0% 100%;
+    --accent: 30 6% 95%;
+    --accent-foreground: 0 0% 9%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 214 32% 91%;
-    /* #E2E8F0 */
-    --input: 214 32% 91%;
-    /* #E2E8F0 */
-    --ring: 224 64% 33%;
-    /* #1e3a8a */
+    --border: 24 5% 90%;          /* #E7E5E4 */
+    --input: 24 5% 90%;
+    --ring: 16 100% 60%;          /* #FF6B35 */
 
-    --radius: 0.5rem;
+    --radius: 0.375rem;           /* Sharp, minimal corners */
   }
 
   .dark {
-    /* DARK MODE - Optimized for Deep Black feel */
-    --background: 0 0% 0%;
-    /* #000000 */
-    --foreground: 0 0% 98%;
-    /* #FAFAFA */
+    /* DARK MODE — Pure Black */
+    --background: 0 0% 0%;        /* #000000 */
+    --foreground: 36 17% 97%;     /* #FAF8F5 */
 
-    --card: 0 0% 3%;
-    /* #080808 */
-    --card-foreground: 0 0% 98%;
+    --card: 0 0% 3%;             /* #080808 */
+    --card-foreground: 36 17% 97%;
 
     --popover: 0 0% 3%;
-    /* #080808 */
-    --popover-foreground: 0 0% 98%;
+    --popover-foreground: 36 17% 97%;
 
-    --primary: 224 76% 48%;
-    /* #1d4ed8 (Brighter Blue for contrast on black) */
-    --primary-foreground: 0 0% 100%;
+    --primary: 16 100% 60%;       /* #FF6B35 */
+    --primary-foreground: 36 17% 97%;
 
     --secondary: 0 0% 8%;
-    /* #141414 */
-    --secondary-foreground: 0 0% 98%;
+    --secondary-foreground: 36 17% 97%;
 
     --muted: 0 0% 8%;
-    /* #141414 */
-    --muted-foreground: 0 0% 63.9%;
+    --muted-foreground: 24 5% 60%; /* #A8A29E */
 
     --accent: 0 0% 8%;
-    /* #141414 */
-    --accent-foreground: 0 0% 98%;
+    --accent-foreground: 36 17% 97%;
 
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive-foreground: 36 17% 97%;
 
-    --border: 0 0% 12%;
-    /* #1F1F1F */
-    --input: 0 0% 12%;
-    /* #1F1F1F */
-    --ring: 224 76% 48%;
+    --border: 0 0% 9%;           /* #171717 */
+    --input: 0 0% 9%;
+    --ring: 16 100% 60%;
   }
 }
-
 
 @layer base {
   * {
@@ -107,182 +80,24 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply font-heading text-primary;
-    letter-spacing: -0.025em;
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-foreground font-sans font-semibold tracking-tight;
   }
 }
 
-/* ─── Brand Pattern Backgrounds ─── */
-
-/* Dot Grid */
-.kinetik-dots {
-  background-image: radial-gradient(circle, hsl(var(--primary) / 0.08) 1px, transparent 1px);
-  background-size: 24px 24px;
-}
-
-/* Line Pattern — subtle parallel diagonal lines */
-.kinetik-lines {
-  background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 40L40 0' stroke='%231e3a8a' stroke-width='0.5' opacity='0.07' fill='none'/%3E%3C/svg%3E");
+/* Linear-style grid lines and borders */
+.grid-lines {
+  background-image: 
+    linear-gradient(to right, hsl(var(--border) / 0.3) 1px, transparent 1px),
+    linear-gradient(to bottom, hsl(var(--border) / 0.3) 1px, transparent 1px);
   background-size: 40px 40px;
 }
 
-/* Circle Composition — concentric arcs */
-.kinetik-circles {
-  background-image:
-    radial-gradient(circle at 80% 20%, hsl(var(--primary) / 0.06) 0%, transparent 50%),
-    radial-gradient(circle at 20% 80%, hsl(var(--primary) / 0.04) 0%, transparent 40%);
-}
-
-/* Wave Pattern — horizontal waves */
-.kinetik-waves {
-  background-image: url("data:image/svg+xml,%3Csvg width='100' height='20' viewBox='0 0 100 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 10 Q25 0 50 10 Q75 20 100 10' stroke='%231e3a8a' stroke-width='0.5' opacity='0.06' fill='none'/%3E%3C/svg%3E");
-  background-size: 100px 20px;
-}
-
-/* Geometric Texture — small triangles */
-.kinetik-geometric {
-  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5L55 55H5Z' stroke='%231e3a8a' stroke-width='0.4' opacity='0.05' fill='none'/%3E%3C/svg%3E");
-  background-size: 60px 60px;
-}
-
-/* Diagonal Lines — tighter spacing */
-.kinetik-diagonal {
-  background-image: repeating-linear-gradient(135deg,
-      transparent,
-      transparent 10px,
-      hsl(var(--primary) / 0.04) 10px,
-      hsl(var(--primary) / 0.04) 11px);
-}
-
-/* ─── Hero surface ─── */
-.kinetik-hero-surface {
-  position: relative;
-  background:
-    radial-gradient(ellipse 80% 50% at 50% -20%, hsl(var(--primary) / 0.15) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 40% at 80% 0%, hsl(var(--primary) / 0.08) 0%, transparent 50%),
-    hsl(var(--background));
-}
-
-/* ─── Grain overlay ─── */
-.kinetik-grain::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  opacity: 0.03;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 128px;
-}
-
-.dark .kinetik-grain::before {
-  opacity: 0.04;
-}
-
-/* ─── Bento card ─── */
-.bento-card {
-  @apply border border-border bg-card;
-  transition: box-shadow 0.3s ease, border-color 0.3s ease;
-}
-
-.bento-card:hover {
-  border-color: hsl(var(--primary) / 0.3);
-  box-shadow:
-    0 0 0 1px hsl(var(--primary) / 0.08),
-    0 20px 50px -20px hsl(var(--primary) / 0.12);
-}
-
-.dark .bento-card:hover {
-  box-shadow:
-    0 0 0 1px hsl(var(--primary) / 0.15),
-    0 20px 60px -20px hsl(var(--primary) / 0.18);
-}
-
-/* ─── Gradient text ─── */
-.kinetik-gradient-text {
-  background: linear-gradient(135deg, hsl(var(--primary)) 0%, #3b82f6 50%, hsl(var(--primary)) 100%);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* ─── Glow button ─── */
-.kinetik-glow-btn {
-  position: relative;
-}
-
-.kinetik-glow-btn::after {
-  content: '';
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  background: linear-gradient(135deg, hsl(var(--primary)) 0%, #3b82f6 100%);
-  opacity: 0;
-  z-index: -1;
-  filter: blur(12px);
-  transition: opacity 0.3s;
-}
-
-.kinetik-glow-btn:hover::after {
-  opacity: 0.4;
-}
-
-/* ─── Marquee ─── */
-@keyframes kinetik-marquee-up {
-  from {
-    transform: translateY(0%);
-  }
-
-  to {
-    transform: translateY(-50%);
-  }
-}
-
-@keyframes kinetik-marquee-down {
-  from {
-    transform: translateY(-50%);
-  }
-
-  to {
-    transform: translateY(0%);
-  }
-}
-
-.kinetik-marquee {
-  animation: kinetik-marquee-up 10s linear infinite;
-}
-
-.kinetik-marquee-reverse {
-  animation: kinetik-marquee-down 10s linear infinite;
-}
-
-/* ─── Shimmer text ─── */
-@keyframes shimmer {
-  0% {
-    background-position: 200% center;
-  }
-
-  100% {
-    background-position: -200% center;
-  }
-}
-
-/* ─── Reduced motion ─── */
-@media (prefers-reduced-motion: reduce) {
-
-  .kinetik-marquee,
-  .kinetik-marquee-reverse {
-    animation-duration: 0.01ms;
-    animation-iteration-count: 1;
-  }
-}
+/* Minimal input highlight */
+.input-focus-ring:focus-within {
+  border-color: hsl(var(--primary));
+  box-shadow: 0 0 0 1px hsl(var(--primary));
+}

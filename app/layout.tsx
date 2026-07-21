@@ -1,13 +1,7 @@
 import type { Metadata } from 'next';
-import { Plus_Jakarta_Sans, Inter, IBM_Plex_Mono } from 'next/font/google';
+import { Inter, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
-
-const plusJakarta = Plus_Jakarta_Sans({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-plus-jakarta',
-});
 
 const inter = Inter({
   subsets: ['latin'],
@@ -15,23 +9,23 @@ const inter = Inter({
   variable: '--font-inter',
 });
 
-const ibmMono = IBM_Plex_Mono({
+const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
-  weight: ['400', '500', '600'],
+  weight: ['400', '500', '600', '700'],
   display: 'swap',
-  variable: '--font-ibm-mono',
+  variable: '--font-mono',
 });
 
 export const metadata: Metadata = {
-  title: 'Kinetik - Motion primitives for the modern web',
-  description: 'A curated registry of physics-driven, copy-paste UI components built with Framer Motion, Tailwind CSS, and TypeScript.',
-  keywords: ['react', 'components', 'animation', 'framer-motion', 'tailwind', 'ui', 'motion'],
+  title: 'Kinetik - SaaS UI Patterns',
+  description: 'Curated library of copy-paste design infrastructure patterns used in modern SaaS products.',
+  keywords: ['react', 'design', 'components', 'patterns', 'tailwind', 'css', 'layout'],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} ${plusJakarta.variable} ${ibmMono.variable} font-sans bg-background text-foreground`}>
+      <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans bg-white text-[#171717] dark:bg-black dark:text-neutral-400 antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
@@ -44,3 +38,4 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
+
